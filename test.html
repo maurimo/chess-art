@@ -170,13 +170,13 @@
         }
 
         var zip = new JSZip();
-        var folder = zip.folder("fantasy");
+        var folder = zip.folder("celtic");
         for (let pc in pc_ids) {
           folder.file(pc + ".svg", get_svg(pc_ids[pc]));
         }
         zip.generateAsync({ type: "blob" })
           .then(function (data) {
-            saveAs(data, 'fantasy.zip');
+            saveAs(data, 'celtic.zip');
           });
       });
     })
@@ -247,54 +247,54 @@
         <table class="board" style="margin: 0 auto; border: 3px solid black">
           <tr>
             <td class="light"><object>
-                <embed id='pc1' onload="javascript:load_piece('pc1')" class="b" src="fantasy/r.svg"></object></td>
+                <embed id='pc1' onload="javascript:load_piece('pc1')" class="b" src="celtic/r.svg"></object></td>
             <td class="dark"><object>
-                <embed id='pc2' onload="javascript:load_piece('pc2')" class="b" src="fantasy/n.svg"></object></td>
+                <embed id='pc2' onload="javascript:load_piece('pc2')" class="b" src="celtic/n.svg"></object></td>
             <td class="light"><object>
-                <embed id='pc3' onload="javascript:load_piece('pc3')" class="b" src="fantasy/b.svg"></object></td>
+                <embed id='pc3' onload="javascript:load_piece('pc3')" class="b" src="celtic/b.svg"></object></td>
             <td class="dark"><object>
-                <embed id='pc4' onload="javascript:load_piece('pc4')" class="b" src="fantasy/q.svg"></object></td>
+                <embed id='pc4' onload="javascript:load_piece('pc4')" class="b" src="celtic/q.svg"></object></td>
             <td class="light"><object>
-                <embed id='pc5' onload="javascript:load_piece('pc5')" class="b" src="fantasy/k.svg"></object></td>
+                <embed id='pc5' onload="javascript:load_piece('pc5')" class="b" src="celtic/k.svg"></object></td>
           </tr>
           <tr>
             <td class="dark"></td>
             <td class="light"></td>
             <td class="dark"></td>
             <td class="light"><object>
-                <embed id='pc6' onload="javascript:load_piece('pc6')" class="b" src="fantasy/p.svg"></object></td>
+                <embed id='pc6' onload="javascript:load_piece('pc6')" class="b" src="celtic/p.svg"></object></td>
             <td class="dark"><object>
-                <embed id='pc7' onload="javascript:load_piece('pc7')" class="b" src="fantasy/p.svg"></object></td>
+                <embed id='pc7' onload="javascript:load_piece('pc7')" class="b" src="celtic/p.svg"></object></td>
           </tr>
           <tr>
             <td class="light"></td>
             <td class="dark"><object>
-                <embed id='pc8' onload="javascript:load_piece('pc8')" class="b" src="fantasy/p.svg"></object></td>
+                <embed id='pc8' onload="javascript:load_piece('pc8')" class="b" src="celtic/p.svg"></object></td>
             <td class="light"><object>
-                <embed id='pc9' onload="javascript:load_piece('pc9')" class="w" src="fantasy/n.svg"></object></td>
+                <embed id='pc9' onload="javascript:load_piece('pc9')" class="w" src="celtic/n.svg"></object></td>
             <td class="dark"></td>
             <td class="light"></td>
           </tr>
           <tr>
             <td class="dark"><object>
-                <embed id='pcA' onload="javascript:load_piece('pcA')" class="w" src="fantasy/p.svg"></object></td>
+                <embed id='pcA' onload="javascript:load_piece('pcA')" class="w" src="celtic/p.svg"></object></td>
             <td class="light"></td>
             <td class="dark"><object>
-                <embed id='pcB' onload="javascript:load_piece('pcB')" class="w" src="fantasy/p.svg"></object></td>
+                <embed id='pcB' onload="javascript:load_piece('pcB')" class="w" src="celtic/p.svg"></object></td>
             <td class="light"></td>
             <td class="dark"><object>
-                <embed id='pcC' onload="javascript:load_piece('pcC')" class="w" src="fantasy/p.svg"></object></td>
+                <embed id='pcC' onload="javascript:load_piece('pcC')" class="w" src="celtic/p.svg"></object></td>
           </tr>
           <tr>
             <td class="light"><object>
-                <embed id='pcD' onload="javascript:load_piece('pcD')" class="w" src="fantasy/r.svg"></object></td>
+                <embed id='pcD' onload="javascript:load_piece('pcD')" class="w" src="celtic/r.svg"></object></td>
             <td class="dark"></td>
             <td class="light"><object>
-                <embed id='pcE' onload="javascript:load_piece('pcE')" class="w" src="fantasy/b.svg"></object></td>
+                <embed id='pcE' onload="javascript:load_piece('pcE')" class="w" src="celtic/b.svg"></object></td>
             <td class="dark"><object>
-                <embed id='pcF' onload="javascript:load_piece('pcF')" class="w" src="fantasy/q.svg"></object></td>
+                <embed id='pcF' onload="javascript:load_piece('pcF')" class="w" src="celtic/q.svg"></object></td>
             <td class="light"><object>
-                <embed id='pcG' onload="javascript:load_piece('pcG')" class="w" src="fantasy/k.svg"></object></td>
+                <embed id='pcG' onload="javascript:load_piece('pcG')" class="w" src="celtic/k.svg"></object></td>
           </tr>
         </table>
       </td>
