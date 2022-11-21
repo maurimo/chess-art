@@ -1,0 +1,319 @@
+<html>
+
+<head>
+  <title>Chess pieces</title>
+  <meta http-equiv="Cache-control" content="max-age=0" />
+  <meta http-equiv="Cache-control" content="no-cache" />
+  <meta http-equiv="Cache-directive" content="no-cache" />
+  <meta http-equiv="Pragma-directive" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script src="jquery-3.6.1.min.js"></script>
+  <script src="jquery-ui-1.13.2/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="jquery-ui-1.13.2/jquery-ui.min.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.js"></script>
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.css">
+
+  <script language="JavaScript" type="text/javascript">
+
+    function table_loaded() {
+      let bsvgs = $('.board embed.b').map(function (index, el) { return el.getSVGDocument(); }).find('svg');
+      bsvgs.find('#fillGradient #stop0').css('stop-color', '#70a0e0')
+      bsvgs.find('#fillGradient #stop1').css('stop-color', '#406090')
+      bsvgs.find('#fill-color').html('.fill-color {fill: #7ae; }')
+
+      bsvgs.find('#stroke-color').html('.stroke-color {stroke: #000; }')
+      bsvgs.find('#stroke-medium').html('.stroke-medium {stroke-width: 18; }')
+      bsvgs.find('#stroke-boundary').html('.stroke-boundary {stroke-width: 35; }')
+
+      let wsvgs = $('.board embed.w').map(function (index, el) { return el.getSVGDocument(); }).find('svg');
+      wsvgs.find('#fillGradient #stop0').css('stop-color', '#fff')
+      wsvgs.find('#fillGradient #stop1').css('stop-color', '#fda')
+      wsvgs.find('#fill-color').html('.fill-color {fill: #fff; }')
+
+      wsvgs.find('#stroke-color').html('.stroke-color {stroke: #000; }')
+      wsvgs.find('#stroke-medium').html('.stroke-medium {stroke-width: 18; }')
+      wsvgs.find('#stroke-boundary').html('.stroke-boundary {stroke-width: 35; }')
+    }
+
+    function load_piece(id) {
+      let el = document.getElementById(id);
+      let col = $(el).hasClass('b') ? 'black' : 'white';
+
+      let svg = $(el.getSVGDocument()).find('svg');
+
+      let gradient1 = document.getElementById(col + '-1-colorpicker').value;
+      let gradient2 = document.getElementById(col + '-2-colorpicker').value;
+      let strokeCol = document.getElementById(col + '-s-colorpicker').value;
+      let strokeSize = document.getElementById('stroke-spinner').value;
+      let boundarySize = document.getElementById('stroke-spinner').value;
+      svg.find('#fillGradient #stop0').css('stop-color', gradient1);
+      svg.find('#fillGradient #stop1').css('stop-color', gradient2);
+      svg.find('#fill-color').html('.fill-color {fill: ' + gradient1 + '; }');
+
+      svg.find('#stroke-color').html('.stroke-color {stroke: ' + strokeCol + '; }');
+      svg.find('#stroke-medium').html('.stroke-medium {stroke-width: ' + strokeSize + '; }');
+      svg.find('#stroke-boundary').html('.stroke-boundary {stroke-width: ' + boundarySize + '; }');
+    }
+
+    function set_black_gradient_1(hex) {
+      let bsvgs = $('.board embed.b').map(function (index, el) { return el.getSVGDocument(); }).find('svg');
+      bsvgs.find('#fillGradient #stop0').css('stop-color', hex)
+      bsvgs.find('#fill-color').html('.fill-color {fill: ' + hex + '; }');
+    }
+
+    function set_black_gradient_2(hex) {
+      let bsvgs = $('.board embed.b').map(function (index, el) { return el.getSVGDocument(); }).find('svg');
+      bsvgs.find('#fillGradient #stop1').css('stop-color', hex);
+    }
+
+    function set_black_stroke(hex) {
+      let bsvgs = $('.board embed.b').map(function (index, el) { return el.getSVGDocument(); }).find('svg');
+      bsvgs.find('#stroke-color').html('.stroke-color {stroke: ' + hex + '; }');
+    }
+
+    function set_white_gradient_1(hex) {
+      let wsvgs = $('.board embed.w').map(function (index, el) { return el.getSVGDocument(); }).find('svg');
+      wsvgs.find('#fillGradient #stop0').css('stop-color', hex)
+      wsvgs.find('#fill-color').html('.fill-color {fill: ' + hex + '; }');
+    }
+
+    function set_white_gradient_2(hex) {
+      let wsvgs = $('.board embed.w').map(function (index, el) { return el.getSVGDocument(); }).find('svg');
+      wsvgs.find('#fillGradient #stop1').css('stop-color', hex);
+    }
+
+    function set_white_stroke(hex) {
+      let wsvgs = $('.board embed.w').map(function (index, el) { return el.getSVGDocument(); }).find('svg');
+      wsvgs.find('#stroke-color').html('.stroke-color {stroke: ' + hex + '; }');
+    }
+
+    function set_stroke_size(val) {
+      let svgs = $('.board embed').map(function (index, el) { return el.getSVGDocument(); }).find('svg');
+      svgs.find('#stroke-medium').html('.stroke-medium {stroke-width: ' + val + '; }')
+    }
+
+    function set_boundary_size(val) {
+      let svgs = $('.board embed').map(function (index, el) { return el.getSVGDocument(); }).find('svg');
+      svgs.find('#stroke-medium').html('.stroke-boundary {stroke-width: ' + val + '; }')
+    }
+
+    $(function () {
+      $("#stroke-spinner").spinner({
+        min: 0,
+        max: 100,
+        change: function (event, ui) { console.log(event); console.log(event.target.value); set_stroke_size(event.target.value); },
+        spin: function (event, ui) { console.log(event.target.value, ui.value); set_stroke_size(ui.value); },
+      });
+      $("#boundary-spinner").spinner({
+        min: 0,
+        max: 100,
+        change: function (event, ui) { set_boundary_size(event.target.value); },
+        spin: function (event, ui) { set_boundary_size(ui.value); },
+      });
+      $("#black-1-colorpicker").spectrum({
+        color: "#70a0e0",
+        showAlpha: false,
+        move: function (col) { set_black_gradient_1(col.toHexString()); },
+        hide: function (col) { set_black_gradient_1(col.toHexString()); },
+      });
+      $("#black-2-colorpicker").spectrum({
+        color: "#406090",
+        showAlpha: false,
+        move: function (col) { set_black_gradient_2(col.toHexString()); },
+        hide: function (col) { set_black_gradient_2(col.toHexString()); },
+      });
+      $("#black-s-colorpicker").spectrum({
+        color: "black",
+        showAlpha: false,
+        move: function (col) { set_black_stroke(col.toHexString()); },
+        hide: function (col) { set_black_stroke(col.toHexString()); },
+      });
+      $("#white-1-colorpicker").spectrum({
+        color: "white",
+        showAlpha: false,
+        move: function (col) { set_white_gradient_1(col.toHexString()); },
+        hide: function (col) { set_white_gradient_1(col.toHexString()); },
+      });
+      $("#white-2-colorpicker").spectrum({
+        color: "#ffddaa",
+        showAlpha: false,
+        move: function (col) { set_white_gradient_2(col.toHexString()); },
+        hide: function (col) { set_white_gradient_2(col.toHexString()); },
+      });
+      $("#white-s-colorpicker").spectrum({
+        color: "black",
+        showAlpha: false,
+        move: function (col) { set_white_stroke(col.toHexString()); },
+        hide: function (col) { set_white_stroke(col.toHexString()); },
+      });
+    })
+  </script>
+  <style>
+    input {
+      box-shadow: none;
+      color: inherit;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      padding: .5em .8em;
+      font-size: inherit;
+      font-family: inherit;
+      margin-bottom: 10px;
+      margin-right: 10px;
+      background-color: white;
+    }
+
+    input.colorpicker {
+      width: 7em;
+    }
+
+    table.board {
+      border: none;
+      margin: 0px;
+      padding: 0px;
+      border-collapse: collapse;
+    }
+
+    .board tr td {
+      width: 0%;
+      white-space: nowrap;
+    }
+
+    .board embed {
+      width: 150;
+      height: 150;
+    }
+
+    .board .light,
+    .board .light_lichess {
+      background-color: #efdfb1;
+    }
+
+    .board .dark,
+    .board .dark_lichess {
+      background-color: #b68b5d;
+    }
+
+    .board .light2,
+    .board .light_chesstempo {
+      background-color: #dfdfdf;
+    }
+
+    .board .dark2,
+    .board .dark_chesstempo {
+      background-color: #6f71b6;
+    }
+  </style>
+</head>
+
+<body style="text-align: center">
+  <h1 style="font-family: Sans; margin-bottom: 0.3em">Chess Pieces</h1>
+
+  <table style="margin: 0 auto">
+    <tr>
+      <td>
+        <table class="board" style="margin: 0 auto; border: 3px solid black">
+          <tr>
+            <td class="light"><object>
+                <embed id='pc1' onload="javascript:load_piece('pc1')" class="b" src="fantasy/r.svg"></object></td>
+            <td class="dark"><object>
+                <embed id='pc2' onload="javascript:load_piece('pc2')" class="b" src="fantasy/n.svg"></object></td>
+            <td class="light"><object>
+                <embed id='pc3' onload="javascript:load_piece('pc3')" class="b" src="fantasy/b.svg"></object></td>
+            <td class="dark"><object>
+                <embed id='pc4' onload="javascript:load_piece('pc4')" class="b" src="fantasy/q.svg"></object></td>
+            <td class="light"><object>
+                <embed id='pc5' onload="javascript:load_piece('pc5')" class="b" src="fantasy/k.svg"></object></td>
+          </tr>
+          <tr>
+            <td class="dark"></td>
+            <td class="light"></td>
+            <td class="dark"></td>
+            <td class="light"><object>
+                <embed id='pc6' onload="javascript:load_piece('pc6')" class="b" src="fantasy/p.svg"></object></td>
+            <td class="dark"><object>
+                <embed id='pc7' onload="javascript:load_piece('pc7')" class="b" src="fantasy/p.svg"></object></td>
+          </tr>
+          <tr>
+            <td class="light"></td>
+            <td class="dark"><object>
+                <embed id='pc8' onload="javascript:load_piece('pc8')" class="b" src="fantasy/p.svg"></object></td>
+            <td class="light"><object>
+                <embed id='pc9' onload="javascript:load_piece('pc9')" class="w" src="fantasy/n.svg"></object></td>
+            <td class="dark"></td>
+            <td class="light"></td>
+          </tr>
+          <tr>
+            <td class="dark"><object>
+                <embed id='pcA' onload="javascript:load_piece('pcA')" class="w" src="fantasy/p.svg"></object></td>
+            <td class="light"></td>
+            <td class="dark"><object>
+                <embed id='pcB' onload="javascript:load_piece('pcB')" class="w" src="fantasy/p.svg"></object></td>
+            <td class="light"></td>
+            <td class="dark"><object>
+                <embed id='pcC' onload="javascript:load_piece('pcC')" class="w" src="fantasy/p.svg"></object></td>
+          </tr>
+          <tr>
+            <td class="light"><object>
+                <embed id='pcD' onload="javascript:load_piece('pcD')" class="w" src="fantasy/r.svg"></object></td>
+            <td class="dark"></td>
+            <td class="light"><object>
+                <embed id='pcE' onload="javascript:load_piece('pcE')" class="w" src="fantasy/b.svg"></object></td>
+            <td class="dark"><object>
+                <embed id='pcF' onload="javascript:load_piece('pcF')" class="w" src="fantasy/q.svg"></object></td>
+            <td class="light"><object>
+                <embed id='pcG' onload="javascript:load_piece('pcG')" class="w" src="fantasy/k.svg"></object></td>
+          </tr>
+        </table>
+      </td>
+      <td style="padding-left: 2em">
+        <p>
+          <label for="stroke-spinner" class="ui-widget ui-state-default" style="border:none; background: none;">Inner
+            stroke:</label>
+          <input id="stroke-spinner" name="value" value="18" style="width: 3em" />
+        </p>
+        <p>
+          <label for="boundary-spinner" class="ui-widget ui-state-default"
+            style="border:none; background: none;">Boundary stroke:</label>
+          <input id="boundary-spinner" name="value" value="35" style="width: 3em" />
+        </p>
+        <p style="display: flex; align-items: center">
+          <label for="black-1-colorpicker" class="ui-widget ui-state-default"
+            style="border:none; background: none;">Black grad-1:&nbsp;</label>
+          <input type='text' id='black-1-colorpicker' class="ui-widget colorpicker" />
+        </p>
+        <p style="display: flex; align-items: center">
+          <label for="black-2-colorpicker" class="ui-widget ui-state-default"
+            style="border:none; background: none;">Black grad-2:&nbsp;</label>
+          <input type='text' id='black-2-colorpicker' class="ui-widget colorpicker" />
+        </p>
+        <p style="display: flex; align-items: center">
+          <label for="black-s-colorpicker" class="ui-widget ui-state-default"
+            style="border:none; background: none;">Black stroke:&nbsp;</label>
+          <input type='text' id='black-s-colorpicker' class="ui-widget colorpicker" />
+        </p>
+        <p style="display: flex; align-items: center">
+          <label for="white-1-colorpicker" class="ui-widget ui-state-default"
+            style="border:none; background: none;">White grad-1:&nbsp;</label>
+          <input type='text' id='white-1-colorpicker' class="ui-widget colorpicker" />
+        </p>
+        <p style="display: flex; align-items: center">
+          <label for="white-2-colorpicker" class="ui-widget ui-state-default"
+            style="border:none; background: none;">White grad-2:&nbsp;</label>
+          <input type='text' id='white-2-colorpicker' class="ui-widget colorpicker" />
+        </p>
+        <p style="display: flex; align-items: center">
+          <label for="white-s-colorpicker" class="ui-widget ui-state-default"
+            style="border:none; background: none;">White stroke:&nbsp;</label>
+          <input type='text' id='white-s-colorpicker' class="ui-widget colorpicker" />
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

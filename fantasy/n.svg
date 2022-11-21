@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="700pt"
+   height="700pt"
+   id="knight"
+   sodipodi:version="0.32"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   version="1.0"
+   inkscape:export-filename="/home/maurizio/out/wn.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   sodipodi:docname="wn.svg"
+   viewBox="0 0 933.333 933.333"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <style
+     id="base">
+    .base { 
+      fill-opacity:1;
+      fill-rule:evenodd;
+      stroke-miterlimit:4;
+      stroke-dasharray:none;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      stroke-opacity:1
+    }
+  </style>
+  <style
+     id="stroke-medium">
+    .stroke-medium {
+      stroke-width: 18;
+    }
+  </style>
+  <style
+     id="stroke-boundary">
+    .stroke-boundary {
+      stroke-width: 30;
+    }
+  </style>
+  <style
+     id="stroke-color">
+    .stroke-color {
+      stroke:#ff0000;
+    }
+  </style>
+  <defs
+     id="defs36222">
+    <linearGradient
+       id="fillGradient">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop0" />
+      <stop
+         style="stop-color:#00ffff;stop-opacity:1"
+         offset="1"
+         id="stop1" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#fillGradient"
+       id="hair4-gradient"
+       gradientUnits="userSpaceOnUse"
+       x1="705.29126"
+       y1="378.28769"
+       x2="787.12555"
+       y2="465.62366"
+       gradientTransform="translate(24,24)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#fillGradient"
+       id="hair3-gradient"
+       gradientUnits="userSpaceOnUse"
+       x1="667.0329"
+       y1="299.32745"
+       x2="739.15356"
+       y2="348.42047"
+       gradientTransform="translate(28,24)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#fillGradient"
+       id="hair2-gradient"
+       gradientUnits="userSpaceOnUse"
+       x1="598.67926"
+       y1="209.76059"
+       x2="705.53198"
+       y2="232.28799"
+       gradientTransform="translate(24,24)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#fillGradient"
+       id="hair1-gradient"
+       gradientUnits="userSpaceOnUse"
+       x1="493.79175"
+       y1="157.9061"
+       x2="625.8526"
+       y2="159.48897"
+       gradientTransform="translate(28,18)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#fillGradient"
+       id="body-gradient"
+       gradientUnits="userSpaceOnUse"
+       x1="265.6459"
+       y1="255.9399"
+       x2="753.20837"
+       y2="854.32837"
+       gradientTransform="translate(24,24)" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview16"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.42426407"
+     inkscape:cx="663.50186"
+     inkscape:cy="529.15157"
+     inkscape:current-layer="svg36220"
+     inkscape:document-units="px"
+     inkscape:window-width="1304"
+     inkscape:window-height="832"
+     inkscape:window-x="255"
+     inkscape:window-y="74"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata36225">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Maurizio Monge</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>Maurizio Monge</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/GPL/2.0/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/GPL/2.0/">
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Reproduction" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Distribution" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/Notice" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/ShareAlike" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/SourceCode" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <path
+     id="boundary"
+     class="base stroke-color stroke-boundary"
+     style="fill:none"
+     d="m 396.67383,87.65625 c -17.77809,-2.898777 -11.05995,59.31123 -21.06055,82.46289 -17.15572,-15.74104 -31.53601,-53.24913 -68.84375,-59.90234 -9.4448,31.4519 16.54029,79.63571 6.64258,92.04687 -52.68595,66.06513 -41.89833,67.65655 -69.39063,140.50586 -13.66845,36.2188 -48.98105,99.01551 -83.75781,139.79492 -33.39313,39.15697 -38.18682,87.22257 -22.68359,103.9336 31.95772,34.44743 70.20389,19.59924 89.70117,-3.02735 -6.64537,13.56201 -12.51624,30.95385 -4.14063,37.4375 19.42543,15.03744 140.63344,-94.86823 153.99219,-89.76562 87.2296,33.31881 175.67154,-32.8419 175.45703,-109.33399 2.52159,56.86955 -8.04308,94.98912 -65.74023,133.7793 -56.17478,37.76668 -170.8528,113.97554 -198.00781,222.85352 -5.69373,22.82897 7.97646,61.02955 37.5039,61.5 121.86424,1.94161 266.93217,2.45094 388.10352,0.20312 98.16962,-1.82112 101.04139,-563.92964 -250.2207,-672.02539 -29.32761,-23.67065 -49.77658,-77.564133 -67.55469,-80.46289 z m 230.14453,96.70117 c 18.22269,1.14114 -50.00063,-27.22097 -58.89844,-38.5625 -3.86025,-4.92044 -15.28673,-6.60831 -28.78515,-6.49023 -29.69654,0.25976 -69.42361,9.25995 -60.69141,11.82031 M 698.23633,273.7168 C 713.10931,283.18176 728.02847,245 718.56836,245 c -14.23259,0 -38.40006,6.6773 -34.02734,-9.39453 4.79909,-17.63897 -17.40097,-23.09314 -39.82422,-23.39649 -22.42326,-0.30335 -45.07107,4.54489 -41.16602,7.51368 m 156.375,158.47461 c 21.28809,7.09148 -0.99288,-18.32354 -11.73437,-31.39063 -10.74159,-13.06709 7.34013,-18.91874 6.07421,-27.20703 -3.06155,-20.0447 -36.65186,-23.32846 -56.44921,-23.10938 m 69.94531,175.83399 c 7.51909,14.8606 37.77267,12.92202 50.81836,8.56055 17.57788,-5.8767 -42.49673,-24.12667 -28.96094,-51.95118 7.49621,-15.40939 -42.50139,-30.6848 -53.28906,-31.07421"
+     sodipodi:nodetypes="sccsssscsscsssscscssccsssccssccssc" />
+  <path
+     class="base stroke-color stroke-medium"
+     style="fill:url(#body-gradient)"
+     d="m 552.58974,421.8085 c 0.21451,76.49216 -88.22639,142.6525 -175.45607,109.33365 -13.35877,-5.10261 -134.56807,104.80328 -153.99351,89.76583 -15.32491,-11.86318 16.97852,-60.76855 14.63008,-54.5222 -11.18173,29.74094 -60.54687,62.84408 -100.19008,20.11241 -15.50324,-16.71104 -10.70908,-64.77608 22.68409,-103.93309 34.77679,-40.77945 70.0883,-103.57706 83.75677,-139.79589 27.49232,-72.84938 16.70544,-74.44061 69.39144,-140.5058 9.89772,-12.41117 -16.08859,-60.59563 -6.64378,-92.04756 37.30778,6.65322 51.68968,44.16249 68.84542,59.90355 10.00061,-23.15168 3.2809,-85.361037 21.05901,-82.462257 17.77813,2.89876 38.22762,56.791587 67.55525,80.462257 351.26245,108.09586 348.39109,670.20371 250.22137,672.02483 -121.17147,2.24782 -266.24046,1.73912 -388.10482,-0.2025 C 296.81744,839.47128 283.1485,801.27041 288.84223,778.44141 315.99727,669.56332 430.67542,593.35474 486.85026,555.58802 544.54747,516.7978 555.11133,478.6781 552.58974,421.8085 Z"
+     id="body"
+     sodipodi:nodetypes="csssssssccscssssc" />
+  <path
+     class="base stroke-color stroke-medium"
+     style="fill:none"
+     d="m 369.00626,314.09868 c -29.0728,-5.36531 -54.56464,3.07817 -75.61699,24.03089"
+     id="eyebrow"
+     sodipodi:nodetypes="cs" />
+  <path
+     class="base stroke-color stroke-medium"
+     style="fill:none"
+     d="m 322.13781,345.80259 c 10.44303,10.64049 23.73386,11.08418 25.92353,-6.99661"
+     id="eye"
+     sodipodi:nodetypes="cs" />
+  <path
+     class="base stroke-color stroke-medium"
+     style="fill:none"
+     d="m 174.77115,538.28958 c -13.85479,-4.78531 -23.87818,17.53696 -15.03821,18.44766"
+     id="nose"
+     sodipodi:nodetypes="cs" />
+  <path
+     class="base stroke-color stroke-medium"
+     style="fill:none"
+     d="m 340.87611,494.30434 9.48752,11.7905"
+     id="cheek1"
+     sodipodi:nodetypes="cc" />
+  <path
+     class="base stroke-color stroke-medium"
+     style="fill:none"
+     d="m 552.75307,389.23593 0.29077,-24.91789"
+     id="cheek2"
+     sodipodi:nodetypes="cc" />
+  <path
+     class="base stroke-color stroke-medium"
+     style="fill:none"
+     d="m 349.87873,182.64943 -10.11313,5.28099"
+     id="ear-right"
+     sodipodi:nodetypes="cs" />
+  <path
+     class="base stroke-color stroke-medium"
+     style="fill:none"
+     d="m 403.27012,128.87359 c 30.15223,42.12012 41.03908,50.64036 5.18648,44.59696"
+     id="ear-left"
+     sodipodi:nodetypes="cs" />
+  <path
+     class="base stroke-color stroke-medium"
+     style="fill:none"
+     d="m 462.14707,749.50113 -25.77978,61.4923"
+     id="leg-line" />
+  <path
+     class="base stroke-color stroke-medium"
+     style="fill:url(#hair1-gradient)"
+     d="m 478.44369,151.12593 c 86.57269,25.38394 71.97084,7.06228 90.22925,36.79587 10.2293,16.65829 24.40355,-5.67783 58.146,-3.56482 18.22271,1.14114 -50.00087,-27.22116 -58.89869,-38.5627 -12.35282,-15.74544 -102.17795,1.60748 -89.47656,5.33165 z"
+     id="hair1"
+     sodipodi:nodetypes="cssss" />
+  <path
+     class="base stroke-color stroke-medium"
+     style="fill:url(#hair2-gradient)"
+     d="m 603.55132,219.72251 c 27.19216,20.67264 47.10978,-0.32462 46.03561,35.54584 -0.73753,24.62951 32.50603,8.17381 48.6501,18.44769 14.873,9.46497 29.79076,-28.71527 20.33064,-28.71527 -14.2326,0 -38.4001,6.67719 -34.02738,-9.39466 9.59819,-35.27797 -88.79908,-21.82117 -80.98897,-15.8836 z"
+     id="hair2"
+     sodipodi:nodetypes="csssss" />
+  <path
+     class="base stroke-color stroke-medium"
+     style="fill:url(#hair3-gradient)"
+     d="m 683.5315,297.71568 c 5.29285,1.85166 34.12066,21.36969 32.78587,30.65121 -6.88469,47.87283 28.4157,44.76975 43.60754,49.83045 21.28811,7.09149 -0.99204,-18.32377 -11.73354,-31.39087 -10.7416,-13.0671 7.34003,-18.91785 6.07411,-27.20615 -4.45317,-29.15596 -73.49733,-22.85137 -70.73398,-21.88464 z"
+     id="hair3"
+     sodipodi:nodetypes="csssss" />
+  <path
+     class="base stroke-color stroke-medium"
+     style="fill:url(#hair4-gradient)"
+     d="m 734.38973,398.64722 c 5.0581,8.81975 16.91814,18.80908 20.67764,32.64483 3.7596,13.83576 5.1749,26.1709 12.694,41.03152 7.5191,14.86062 37.77229,12.92349 50.81799,8.56201 17.5779,-5.8767 -42.49623,-24.12699 -28.96043,-51.95152 8.5671,-17.61075 -57.9589,-35.04664 -55.2292,-30.28684 z"
+     id="hair4"
+     sodipodi:nodetypes="csssss" />
+</svg>
