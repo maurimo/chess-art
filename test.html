@@ -36,10 +36,9 @@
       document.body.removeChild(element);
     }
 
-    function load_piece(id) {
-      let el = document.getElementById(id);
+    function load_piece(el) {
+      $(el).css("visibility", "visible");
       let col = $(el).hasClass('b') ? 'black' : 'white';
-
       let svg = $(el.getSVGDocument()).find('svg');
 
       let gradient1 = document.getElementById(col + '-1-colorpicker').value;
@@ -50,7 +49,6 @@
       svg.find('#fillGradient #stop0').css('stop-color', gradient1);
       svg.find('#fillGradient #stop1').css('stop-color', gradient2);
       svg.find('#fill-color').html('.fill-color {fill: ' + gradient1 + '; }');
-
       svg.find('#stroke-color').html('.stroke-color {stroke: ' + strokeCol + '; }');
       svg.find('#stroke-medium').html('.stroke-medium {stroke-width: ' + strokeSize + '; }');
       svg.find('#stroke-boundary').html('.stroke-boundary {stroke-width: ' + boundarySize + '; }');
@@ -103,84 +101,183 @@
       return '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n' + svg[0].outerHTML;
     }
 
-    $(function () {
-      console.log(window.location.href);
+    function piece_onload(event) {
+      load_piece(event.target);
+    }
+
+    function install_piece_onload() {
+      for (let el of $(".board embed")) {
+        el.addEventListener('load', piece_onload);
+      }
+    }
+
+    // note: make sure each piece shows up
+    let piece_setup = {
+      "A1": "wr",
+      "C1": "wb",
+      "D1": "wq",
+      "E1": "wk",
+      "A2": "wp",
+      "C2": "wp",
+      "E2": "wp",
+      "B3": "bp",
+      "C3": "wn",
+      "D4": "bp",
+      "E4": "bp",
+      "A5": "br",
+      "B5": "bn",
+      "C5": "bb",
+      "D5": "bq",
+      "E5": "bk",
+    };
+
+    function get_all_variables() {
+      let query = window.location.search.substring(1);
+      let vars = query.split("&");
+      let retv = {}
+      for (let i = 0; i < vars.length; i++) {
+        let pair = vars[i].split("=", 2);
+        if (pair.length == 2 && pair[0].length > 0) {
+          retv[pair[0]] = pair[1];
+        }
+      }
+      return retv;
+    }
+
+    function update_variables(var_values) {
+      let path = window.location.pathname;
+      let all_vars = get_all_variables();
+      for (let v in var_values) {
+        all_vars[v] = var_values[v];
+      }
+      let first = true;
+      for (let v in all_vars) {
+        path += (first ? '?' : '&') + v + "=" + all_vars[v];
+        first = false;
+      }
+      window.history.pushState("Chess Pieces", "", path);
+    }
+
+    function get_variable(variable, def) {
+      let query = window.location.search.substring(1);
+      let vars = query.split("&");
+      for (let i = 0; i < vars.length; i++) {
+        let pair = vars[i].split("=");
+        if (pair[0] == variable) { return pair[1]; }
+      }
+      return def;
+    }
+
+    function load_all_pieces() {
+      let set = get_variable('set', 'fantasy');
+
+      for (let sq in piece_setup) {
+        let pc = piece_setup[sq];
+        let id = "sq" + sq;
+        let el = document.getElementById(id);
+        el.className = pc[0];
+        $(el).css("visibility", "hidden");
+        el.src = set + "/" + pc[1] + ".svg";
+      }
+    }
+
+    $(() => {
+      let all_vars = get_all_variables();
 
       $("#stroke-spinner").spinner({
         min: 0,
         max: 100,
-        change: function (event, ui) { set_stroke_size(event.target.value); },
-        spin: function (event, ui) { set_stroke_size(ui.value); },
-      });
+        change: (event, ui) => {
+          set_stroke_size(event.target.value);
+          update_variables({ "stroke": event.target.value });
+        },
+        spin: (event, ui) => {
+          set_stroke_size(ui.value);
+          update_variables({ "stroke": ui.value })
+        },
+      }).val(all_vars['stroke'] || 20);
+
       $("#boundary-spinner").spinner({
         min: 0,
         max: 100,
-        change: function (event, ui) { set_boundary_size(event.target.value); },
-        spin: function (event, ui) { set_boundary_size(ui.value); },
-      });
-      $("#black-1-colorpicker").spectrum({
-        color: "#877f73",
-        showAlpha: false,
-        move: function (col) { set_black_gradient_1(col.toHexString()); },
-        hide: function (col) { set_black_gradient_1(col.toHexString()); },
-      });
-      $("#black-2-colorpicker").spectrum({
-        color: "#303030",
-        showAlpha: false,
-        move: function (col) { set_black_gradient_2(col.toHexString()); },
-        hide: function (col) { set_black_gradient_2(col.toHexString()); },
-      });
-      $("#black-s-colorpicker").spectrum({
-        color: "black",
-        showAlpha: false,
-        move: function (col) { set_black_stroke(col.toHexString()); },
-        hide: function (col) { set_black_stroke(col.toHexString()); },
-      });
-      $("#white-1-colorpicker").spectrum({
-        color: "white",
-        showAlpha: false,
-        move: function (col) { set_white_gradient_1(col.toHexString()); },
-        hide: function (col) { set_white_gradient_1(col.toHexString()); },
-      });
-      $("#white-2-colorpicker").spectrum({
-        color: "#bfd3d7",
-        showAlpha: false,
-        move: function (col) { set_white_gradient_2(col.toHexString()); },
-        hide: function (col) { set_white_gradient_2(col.toHexString()); },
-      });
-      $("#white-s-colorpicker").spectrum({
-        color: "black",
-        showAlpha: false,
-        move: function (col) { set_white_stroke(col.toHexString()); },
-        hide: function (col) { set_white_stroke(col.toHexString()); },
-      });
-      $("#download-button").button().click(function () {
+        change: (event, ui) => {
+          set_boundary_size(event.target.value);
+          update_variables({ "boundary": event.target.value });
+        },
+        spin: (event, ui) => {
+          set_boundary_size(ui.value);
+          update_variables({ "boundary": ui.value });
+        },
+      }).val(all_vars['boundary'] || 35);
 
-        let pc_ids = {
-          "wk": "pcG",
-          "wq": "pcF",
-          "wb": "pcE",
-          "wr": "pcD",
-          "wn": "pc9",
-          "wp": "pcC",
-          "bk": "pc5",
-          "bq": "pc4",
-          "bb": "pc3",
-          "br": "pc1",
-          "bn": "pc2",
-          "bp": "pc6",
+      $("#black-1-colorpicker").spectrum({
+        color: all_vars['b1'] || "#877f73",
+        showAlpha: false,
+        move: (col) => { set_black_gradient_1(col.toHexString()); },
+        hide: (col) => { set_black_gradient_1(col.toHexString()); },
+        change: (col) => { update_variables({ "b1": col.toHexString().substring(1) }); },
+      });
+
+      $("#black-2-colorpicker").spectrum({
+        color: all_vars['b2'] || "#303030",
+        showAlpha: false,
+        move: (col) => { set_black_gradient_2(col.toHexString()); },
+        hide: (col) => { set_black_gradient_2(col.toHexString()); },
+        change: (col) => { update_variables({ "b2": col.toHexString().substring(1) }); },
+      });
+
+      $("#black-s-colorpicker").spectrum({
+        color: all_vars['bs'] || "black",
+        showAlpha: false,
+        move: (col) => { set_black_stroke(col.toHexString()); },
+        hide: (col) => { set_black_stroke(col.toHexString()); },
+        change: (col) => { update_variables({ "bs": col.toHexString().substring(1) }); },
+      });
+
+      $("#white-1-colorpicker").spectrum({
+        color: all_vars['w1'] || "white",
+        showAlpha: false,
+        move: (col) => { set_white_gradient_1(col.toHexString()); },
+        hide: (col) => { set_white_gradient_1(col.toHexString()); },
+        change: (col) => { update_variables({ "w1": col.toHexString().substring(1) }); },
+      });
+
+      $("#white-2-colorpicker").spectrum({
+        color: all_vars['w2'] || "#bfd3d7",
+        showAlpha: false,
+        move: (col) => { set_white_gradient_2(col.toHexString()); },
+        hide: (col) => { set_white_gradient_2(col.toHexString()); },
+        change: (col) => { update_variables({ "w2": col.toHexString().substring(1) }); },
+      });
+
+      $("#white-s-colorpicker").spectrum({
+        color: all_vars['ws'] || "black",
+        showAlpha: false,
+        move: (col) => { set_white_stroke(col.toHexString()); },
+        hide: (col) => { set_white_stroke(col.toHexString()); },
+        change: (col) => { update_variables({ "ws": col.toHexString().substring(1) }); },
+      });
+
+      $("#download-button").button().click(function () {
+        let piece_to_square = {};
+        for (let sq in piece_setup) {
+          piece_to_square[piece_setup[sq]] = sq;
         }
 
-        var zip = new JSZip();
-        var folder = zip.folder("celtic");
-        for (let pc in pc_ids) {
-          folder.file(pc + ".svg", get_svg(pc_ids[pc]));
+        let set = get_variable('set', 'fantasy');
+        let zip = new JSZip();
+        let folder = zip.folder(set);
+        for (let pc in piece_to_square) {
+          folder.file(pc + ".svg", get_svg('sq' + piece_to_square[pc]));
         }
         zip.generateAsync({ type: "blob" })
-          .then(function (data) {
-            saveAs(data, 'celtic.zip');
+          .then((data) => {
+            saveAs(data, set + '.zip');
           });
       });
+
+      install_piece_onload();
+      load_all_pieces();
     })
   </script>
   <style>
@@ -210,12 +307,15 @@
 
     .board tr td {
       width: 0%;
+      padding: 0px;
       white-space: nowrap;
+      width: 150px;
+      height: 150px;
     }
 
     .board embed {
-      width: 150;
-      height: 150;
+      width: 150px;
+      height: 150px;
     }
 
     .board .light,
@@ -247,6 +347,42 @@
     <tr>
       <td>
         <table class="board" style="margin: 0 auto; border: 3px solid black">
+          <tr>
+            <td class="light"><object><embed id='sqA5'></object></td>
+            <td class="dark"><object><embed id='sqB5'></object></td>
+            <td class="light"><object><embed id='sqC5'></object></td>
+            <td class="dark"><object><embed id='sqD5'></object></td>
+            <td class="light"><object><embed id='sqE5'></object></td>
+          </tr>
+          <tr>
+            <td class="dark"><object><embed id='sqA4'></object></td>
+            <td class="light"><object><embed id='sqB4'></object></td>
+            <td class="dark"><object><embed id='sqC4'></object></td>
+            <td class="light"><object><embed id='sqD4'></object></td>
+            <td class="dark"><object><embed id='sqE4'></object></td>
+          </tr>
+          <tr>
+            <td class="light"><object><embed id='sqA3'></object></td>
+            <td class="dark"><object><embed id='sqB3'></object></td>
+            <td class="light"><object><embed id='sqC3'></object></td>
+            <td class="dark"><object><embed id='sqD3'></object></td>
+            <td class="light"><object><embed id='sqE3'></object></td>
+          </tr>
+          <tr>
+            <td class="dark"><object><embed id='sqA2'></object></td>
+            <td class="light"><object><embed id='sqB2'></object></td>
+            <td class="dark"><object><embed id='sqC2'></object></td>
+            <td class="light"><object><embed id='sqD2'></object></td>
+            <td class="dark"><object><embed id='sqE2'></object></td>
+          </tr>
+          <tr>
+            <td class="light"><object><embed id='sqA1'></object></td>
+            <td class="dark"><object><embed id='sqB1'></object></td>
+            <td class="light"><object><embed id='sqC1'></object></td>
+            <td class="dark"><object><embed id='sqD1'></object></td>
+            <td class="light"><object><embed id='sqE1'></object></td>
+          </tr>
+          <!--
           <tr>
             <td class="light"><object>
                 <embed id='pc1' onload="javascript:load_piece('pc1')" class="b" src="celtic/r.svg"></object></td>
@@ -298,18 +434,19 @@
             <td class="light"><object>
                 <embed id='pcG' onload="javascript:load_piece('pcG')" class="w" src="celtic/k.svg"></object></td>
           </tr>
+          -->
         </table>
       </td>
       <td style="padding-left: 2em">
         <p>
           <label for="stroke-spinner" class="ui-widget ui-state-default" style="border:none; background: none;">Inner
             stroke:</label>
-          <input id="stroke-spinner" name="value" value="18" style="width: 3em" />
+          <input id="stroke-spinner" name="value" style="width: 3em" />
         </p>
         <p>
           <label for="boundary-spinner" class="ui-widget ui-state-default"
             style="border:none; background: none;">Boundary stroke:</label>
-          <input id="boundary-spinner" name="value" value="25" style="width: 3em" />
+          <input id="boundary-spinner" name="value" style="width: 3em" />
         </p>
         <p style="display: flex; align-items: center">
           <label for="black-1-colorpicker" class="ui-widget ui-state-default"
