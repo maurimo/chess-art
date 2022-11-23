@@ -184,6 +184,22 @@
     $(() => {
       let all_vars = get_all_variables();
 
+      let options = $("#piece-set-select").find("option");
+      let all_sets = options.map((i, el) => { return el.value; }).toArray();
+      let pset = all_vars["set"] || "fantasy";
+      if (all_sets.indexOf(pset) == -1) {
+        pset = "fantasy";
+      }
+      let set_index = all_sets.indexOf(pset);
+      options[set_index].selected = "selected"
+      $("#piece-set-select").selectmenu({
+        change: (event, ui) => {
+          update_variables({ "set": ui.item.value });
+          load_all_pieces();
+          //console.log("change", ui.item.value);
+        }
+      });
+
       $("#stroke-spinner").spinner({
         min: 0,
         max: 100,
@@ -382,71 +398,26 @@
             <td class="dark"><object><embed id='sqD1'></object></td>
             <td class="light"><object><embed id='sqE1'></object></td>
           </tr>
-          <!--
-          <tr>
-            <td class="light"><object>
-                <embed id='pc1' onload="javascript:load_piece('pc1')" class="b" src="celtic/r.svg"></object></td>
-            <td class="dark"><object>
-                <embed id='pc2' onload="javascript:load_piece('pc2')" class="b" src="celtic/n.svg"></object></td>
-            <td class="light"><object>
-                <embed id='pc3' onload="javascript:load_piece('pc3')" class="b" src="celtic/b.svg"></object></td>
-            <td class="dark"><object>
-                <embed id='pc4' onload="javascript:load_piece('pc4')" class="b" src="celtic/q.svg"></object></td>
-            <td class="light"><object>
-                <embed id='pc5' onload="javascript:load_piece('pc5')" class="b" src="celtic/k.svg"></object></td>
-          </tr>
-          <tr>
-            <td class="dark"></td>
-            <td class="light"></td>
-            <td class="dark"></td>
-            <td class="light"><object>
-                <embed id='pc6' onload="javascript:load_piece('pc6')" class="b" src="celtic/p.svg"></object></td>
-            <td class="dark"><object>
-                <embed id='pc7' onload="javascript:load_piece('pc7')" class="b" src="celtic/p.svg"></object></td>
-          </tr>
-          <tr>
-            <td class="light"></td>
-            <td class="dark"><object>
-                <embed id='pc8' onload="javascript:load_piece('pc8')" class="b" src="celtic/p.svg"></object></td>
-            <td class="light"><object>
-                <embed id='pc9' onload="javascript:load_piece('pc9')" class="w" src="celtic/n.svg"></object></td>
-            <td class="dark"></td>
-            <td class="light"></td>
-          </tr>
-          <tr>
-            <td class="dark"><object>
-                <embed id='pcA' onload="javascript:load_piece('pcA')" class="w" src="celtic/p.svg"></object></td>
-            <td class="light"></td>
-            <td class="dark"><object>
-                <embed id='pcB' onload="javascript:load_piece('pcB')" class="w" src="celtic/p.svg"></object></td>
-            <td class="light"></td>
-            <td class="dark"><object>
-                <embed id='pcC' onload="javascript:load_piece('pcC')" class="w" src="celtic/p.svg"></object></td>
-          </tr>
-          <tr>
-            <td class="light"><object>
-                <embed id='pcD' onload="javascript:load_piece('pcD')" class="w" src="celtic/r.svg"></object></td>
-            <td class="dark"></td>
-            <td class="light"><object>
-                <embed id='pcE' onload="javascript:load_piece('pcE')" class="w" src="celtic/b.svg"></object></td>
-            <td class="dark"><object>
-                <embed id='pcF' onload="javascript:load_piece('pcF')" class="w" src="celtic/q.svg"></object></td>
-            <td class="light"><object>
-                <embed id='pcG' onload="javascript:load_piece('pcG')" class="w" src="celtic/k.svg"></object></td>
-          </tr>
-          -->
         </table>
       </td>
       <td style="padding-left: 2em">
         <p>
+          <label for="piece-set-select">Piece set:</label>
+          <select name="piece-set" id="piece-set-select">
+            <option value="fantasy">Fantasy</option>
+            <option value="celtic">Celtic</option>
+            <option value="spatial">Spatial</option>
+          </select>
+        </p>
+        <p>
           <label for="stroke-spinner" class="ui-widget ui-state-default" style="border:none; background: none;">Inner
             stroke:</label>
-          <input id="stroke-spinner" name="value" style="width: 3em" />
+          <input id="stroke-spinner" style="width: 3em" />
         </p>
         <p>
           <label for="boundary-spinner" class="ui-widget ui-state-default"
             style="border:none; background: none;">Boundary stroke:</label>
-          <input id="boundary-spinner" name="value" style="width: 3em" />
+          <input id="boundary-spinner" style="width: 3em" />
         </p>
         <p style="display: flex; align-items: center">
           <label for="black-1-colorpicker" class="ui-widget ui-state-default"
