@@ -168,6 +168,33 @@
       return def;
     }
 
+    let color_styles = {
+      'lichess': ['#efdfb1', '#b68b5d'],
+      'chesscom': ['#f3f3f4', '#6a9b41'],
+      'chesstempo': ['#dfdfdf', '#7578b7'],
+      'banksia': ['#e6e4e7', '#9a9a9a'],
+      'nibbler': ['#dadada', '#b4b4b4'],
+      'arena': ['#ffd89f', '#b86d22'],
+      'chessbase': ['#e8d8c7', '#c27a53'],
+    }
+
+    function load_board() {
+      let set = get_variable('board', 'lichess');
+
+      console.log("set:", set);
+      let colors = color_styles[set];
+      $('#custom-sq-colorpickers').css('display', colors === undefined ? 'flex' : 'none');
+      if (colors === undefined) {
+        colors = [
+          $("#light-sq-colorpicker").val(),
+          $("#dark-sq-colorpicker").val(),
+        ]
+      }
+      console.log("cols:", colors);
+      $('.board .light').css('background-color', colors[0]);
+      $('.board .dark').css('background-color', colors[1]);
+    }
+
     function load_all_pieces() {
       let set = get_variable('set', 'fantasy');
 
@@ -184,19 +211,48 @@
     $(() => {
       let all_vars = get_all_variables();
 
-      let options = $("#piece-set-select").find("option");
-      let all_sets = options.map((i, el) => { return el.value; }).toArray();
+      let bs_options = $("#board-style-select").find("option");
+      let bs_all_sets = bs_options.map((i, el) => { return el.value; }).toArray();
+      let bstyle = all_vars["board"] || "lichess";
+      if (bs_all_sets.indexOf(bstyle) == -1) {
+        bstyle = "lichess";
+      }
+      let bs_index = bs_all_sets.indexOf(bstyle);
+      bs_options[bs_index].selected = "selected";
+      $("#board-style-select").selectmenu({
+        change: (event, ui) => {
+          update_variables({ "board": ui.item.value });
+          load_board();
+        }
+      });
+
+      $("#light-sq-colorpicker").spectrum({
+        color: all_vars['lsq'] || "#eeeeee",
+        showAlpha: false,
+        move: (col) => { $(".board .light").css("background-color", col.toHexString()); },
+        hide: (col) => { $(".board .light").css("background-color", col.toHexString()); },
+        change: (col) => { update_variables({ "lsq": col.toHexString().substring(1) }); },
+      });
+      $("#dark-sq-colorpicker").spectrum({
+        color: all_vars['dsq'] || "#76a5af",
+        showAlpha: false,
+        move: (col) => { $(".board .dark").css("background-color", col.toHexString()); },
+        hide: (col) => { $(".board .dark").css("background-color", col.toHexString()); },
+        change: (col) => { update_variables({ "dsq": col.toHexString().substring(1) }); },
+      });
+
+      let ps_options = $("#piece-set-select").find("option");
+      let ps_all_sets = ps_options.map((i, el) => { return el.value; }).toArray();
       let pset = all_vars["set"] || "fantasy";
-      if (all_sets.indexOf(pset) == -1) {
+      if (ps_all_sets.indexOf(pset) == -1) {
         pset = "fantasy";
       }
-      let set_index = all_sets.indexOf(pset);
-      options[set_index].selected = "selected"
+      let set_index = ps_all_sets.indexOf(pset);
+      ps_options[set_index].selected = "selected";
       $("#piece-set-select").selectmenu({
         change: (event, ui) => {
           update_variables({ "set": ui.item.value });
           load_all_pieces();
-          //console.log("change", ui.item.value);
         }
       });
 
@@ -292,6 +348,8 @@
           });
       });
 
+      load_board();
+
       install_piece_onload();
       load_all_pieces();
     })
@@ -332,26 +390,6 @@
     .board embed {
       width: 150px;
       height: 150px;
-    }
-
-    .board .light,
-    .board .light_lichess {
-      background-color: #efdfb1;
-    }
-
-    .board .dark,
-    .board .dark_lichess {
-      background-color: #b68b5d;
-    }
-
-    .board .light2,
-    .board .light_chesstempo {
-      background-color: #dfdfdf;
-    }
-
-    .board .dark2,
-    .board .dark_chesstempo {
-      background-color: #6f71b6;
     }
   </style>
 </head>
@@ -400,10 +438,34 @@
           </tr>
         </table>
       </td>
-      <td style="padding-left: 2em">
+      <td style="padding-left: 2em; width: 30em">
         <p>
-          <label for="piece-set-select">Piece set:</label>
-          <select name="piece-set" id="piece-set-select">
+          <label for="board-style-select" class="ui-widget ui-state-default"
+            style="border:none; background: none;">Board style:</label>
+          <select id="board-style-select">
+            <option value="lichess">Lichess</option>
+            <option value="chesscom">chess.com</option>
+            <option value="chesstempo">Chess Tempo</option>
+            <option value="banksia">Banksia</option>
+            <option value="nibbler">Nibbler</option>
+            <option value="arena">Arena</option>
+            <option value="chessbase">ChessBase</option>
+            <option value="custom">Custom...</option>
+          </select>
+        </p>
+        <p style="display: flex; margin-left: 1em; align-items: center" id="custom-sq-colorpickers">
+          <label for="light-sq-colorpicker" class="ui-widget ui-state-default"
+            style="border:none; background: none;">Light:&nbsp;</label>
+          <input type='text' id='light-sq-colorpicker' class="ui-widget" style="width:6em" />
+
+          <label for="dark-sq-colorpicker" class="ui-widget ui-state-default"
+            style="border:none; background: none;">Dark:&nbsp;</label>
+          <input type='text' id='dark-sq-colorpicker' class="ui-widget" style="width:6em" />
+        </p>
+        <p>
+          <label for="piece-set-select" class="ui-widget ui-state-default" style="border:none; background: none;">Piece
+            set:</label>
+          <select id="piece-set-select">
             <option value="fantasy">Fantasy</option>
             <option value="celtic">Celtic</option>
             <option value="spatial">Spatial</option>
@@ -455,6 +517,12 @@
       </td>
     </tr>
   </table>
+
+  <p>
+    Note: disable Chrome's color management in <a
+      href="chrome://flags/#force-color-profile">chrome://flags/#force-color-profile</a> setting it to sRGB to get
+    authentic colors.
+  </p>
 </body>
 
 </html>
