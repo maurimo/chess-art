@@ -183,12 +183,14 @@
 
       console.log("set:", set);
       let colors = color_styles[set];
-      $('#custom-sq-colorpickers').css('display', colors === undefined ? 'flex' : 'none');
       if (colors === undefined) {
+        $('#custom-sq-colorpickers').css('display', '');
         colors = [
           $("#light-sq-colorpicker").val(),
           $("#dark-sq-colorpicker").val(),
         ]
+      } else {
+        $('#custom-sq-colorpickers').css('display', 'none');
       }
       console.log("cols:", colors);
       $('.board .light').css('background-color', colors[0]);
@@ -438,8 +440,8 @@
           </tr>
         </table>
       </td>
-      <td style="padding-left: 2em; width: 30em">
-        <p>
+      <td style="padding-left: 2em">
+        <p style="margin-bottom: 0px">
           <label for="board-style-select" class="ui-widget ui-state-default"
             style="border:none; background: none;">Board style:</label>
           <select id="board-style-select">
@@ -453,18 +455,21 @@
             <option value="custom">Custom...</option>
           </select>
         </p>
-        <p style="display: flex; margin-left: 1em; align-items: center" id="custom-sq-colorpickers">
-          <label for="light-sq-colorpicker" class="ui-widget ui-state-default"
-            style="border:none; background: none;">Light:&nbsp;</label>
-          <input type='text' id='light-sq-colorpicker' class="ui-widget" style="width:6em" />
-
-          <label for="dark-sq-colorpicker" class="ui-widget ui-state-default"
-            style="border:none; background: none;">Dark:&nbsp;</label>
-          <input type='text' id='dark-sq-colorpicker' class="ui-widget" style="width:6em" />
-        </p>
+        <div style="padding-left: 2em" id="custom-sq-colorpickers">
+          <p style="display: flex; align-items: center">
+            <label for="light-sq-colorpicker" class="ui-widget ui-state-default"
+              style="border:none; background: none;">Light&nbsp;squares:&nbsp;</label>
+            <input type='text' id='light-sq-colorpicker' class="ui-widget colorpicker" />
+          </p>
+          <p style="display: flex; align-items: center">
+            <label for="dark-sq-colorpicker" class="ui-widget ui-state-default"
+              style="border:none; background: none;">Dark&nbsp;squares:&nbsp;</label>
+            <input type='text' id='dark-sq-colorpicker' class="ui-widget colorpicker" />
+          </p>
+        </div>
         <p>
-          <label for="piece-set-select" class="ui-widget ui-state-default" style="border:none; background: none;">Piece
-            set:</label>
+          <label for="piece-set-select" class="ui-widget ui-state-default"
+            style="border:none; background: none;">Piece&nbsp;set:</label>
           <select id="piece-set-select">
             <option value="fantasy">Fantasy</option>
             <option value="celtic">Celtic</option>
@@ -472,43 +477,43 @@
           </select>
         </p>
         <p>
-          <label for="stroke-spinner" class="ui-widget ui-state-default" style="border:none; background: none;">Inner
-            stroke:</label>
+          <label for="stroke-spinner" class="ui-widget ui-state-default"
+            style="border:none; background: none;">Inner&nbsp;stroke:</label>
           <input id="stroke-spinner" style="width: 3em" />
         </p>
         <p>
           <label for="boundary-spinner" class="ui-widget ui-state-default"
-            style="border:none; background: none;">Boundary stroke:</label>
+            style="border:none; background: none;">Boundary&nbsp;stroke:</label>
           <input id="boundary-spinner" style="width: 3em" />
         </p>
         <p style="display: flex; align-items: center">
           <label for="black-1-colorpicker" class="ui-widget ui-state-default"
-            style="border:none; background: none;">Black grad-1:&nbsp;</label>
+            style="border:none; background: none;">Black&nbsp;grad-1:&nbsp;</label>
           <input type='text' id='black-1-colorpicker' class="ui-widget colorpicker" />
         </p>
         <p style="display: flex; align-items: center">
           <label for="black-2-colorpicker" class="ui-widget ui-state-default"
-            style="border:none; background: none;">Black grad-2:&nbsp;</label>
+            style="border:none; background: none;">Black&nbsp;grad-2:&nbsp;</label>
           <input type='text' id='black-2-colorpicker' class="ui-widget colorpicker" />
         </p>
         <p style="display: flex; align-items: center">
           <label for="black-s-colorpicker" class="ui-widget ui-state-default"
-            style="border:none; background: none;">Black stroke:&nbsp;</label>
+            style="border:none; background: none;">Black&nbsp;stroke:&nbsp;</label>
           <input type='text' id='black-s-colorpicker' class="ui-widget colorpicker" />
         </p>
         <p style="display: flex; align-items: center">
           <label for="white-1-colorpicker" class="ui-widget ui-state-default"
-            style="border:none; background: none;">White grad-1:&nbsp;</label>
+            style="border:none; background: none;">White&nbsp;grad-1:&nbsp;</label>
           <input type='text' id='white-1-colorpicker' class="ui-widget colorpicker" />
         </p>
         <p style="display: flex; align-items: center">
           <label for="white-2-colorpicker" class="ui-widget ui-state-default"
-            style="border:none; background: none;">White grad-2:&nbsp;</label>
+            style="border:none; background: none;">White&nbsp;grad-2:&nbsp;</label>
           <input type='text' id='white-2-colorpicker' class="ui-widget colorpicker" />
         </p>
         <p style="display: flex; align-items: center">
           <label for="white-s-colorpicker" class="ui-widget ui-state-default"
-            style="border:none; background: none;">White stroke:&nbsp;</label>
+            style="border:none; background: none;">White&nbsp;stroke:&nbsp;</label>
           <input type='text' id='white-s-colorpicker' class="ui-widget colorpicker" />
         </p>
         <p>
