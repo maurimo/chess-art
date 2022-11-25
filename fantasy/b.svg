@@ -40,12 +40,6 @@
     }
   </style>
   <style
-     id="stroke-heavy">
-    .stroke-heavy {
-      stroke-width: 21;
-    }
-  </style>
-  <style
      id="stroke-boundary">
     .stroke-boundary {
       stroke-width: 30;
