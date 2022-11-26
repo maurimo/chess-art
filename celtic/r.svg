@@ -26,14 +26,14 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.54488788"
-     inkscape:cx="195.45305"
+     inkscape:cx="98.185337"
      inkscape:cy="497.35002"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="0"
      inkscape:window-y="32"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg1556" />
+     inkscape:current-layer="rook" />
   <style
      id="style-base">
     .base { 
@@ -122,7 +122,7 @@
   <path
      class="base stroke-color stroke-medium"
      style="opacity:0.5;fill:none"
-     d="m 726.36613,871.43286 c 67.00261,-7.39447 87.49014,-58.99205 56.57159,-97.68441 -4.73572,-5.9262 -88.44859,-11.99594 -105.91665,-14.9795 -77.68361,-13.26832 -18.74599,-62.16055 -53.65969,-80.48633 -11.19895,-74.12031 10.60257,-222.79595 22.32842,-333.76096 l 103.34812,-50.71105 c -28.04629,-58.80649 18.62871,-99.96237 7.31366,-182.05858"
+     d="m 704.36614,871.43286 c 67.00261,-7.39447 99.49013,-60.99205 68.57158,-99.68441 -4.73572,-5.9262 -76.44859,-15.99594 -93.91665,-18.9795 -77.68361,-13.26832 -20.74599,-56.16055 -55.65969,-74.48633 -11.19895,-74.12031 10.60257,-222.79595 22.32842,-333.76096 l 99.34812,-50.71105 c -28.04629,-58.80649 20.62871,-99.96237 9.31366,-182.05858"
      id="deco-side"
      sodipodi:nodetypes="csscccc"
      inkscape:connector-curvature="0" />
