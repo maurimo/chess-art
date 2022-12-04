@@ -165,7 +165,6 @@
     }
 
     function piece_onload(event) {
-      console.log("onload:", event.target);
       load_piece(event.target);
       const els = $(event.target);
       if (get_variable('shadow', 'blurred') == 'none') {
@@ -256,7 +255,6 @@
     function load_board() {
       let set = get_variable('board', 'lichess');
 
-      console.log("set:", set);
       let colors = color_styles[set];
       if (colors === undefined) {
         $('#custom-sq-colorpickers').css('display', '');
@@ -267,7 +265,6 @@
       } else {
         $('#custom-sq-colorpickers').css('display', 'none');
       }
-      console.log("cols:", colors);
       $('.board .light').css('background-color', colors[0]);
       $('.board .dark').css('background-color', colors[1]);
     }
