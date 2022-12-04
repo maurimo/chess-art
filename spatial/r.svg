@@ -7,12 +7,12 @@
    id="rook"
    viewBox="0 0 933.333 933.333"
    sodipodi:version="0.32"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    version="1.0"
    inkscape:export-filename="/home/maurizio/out/wr.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
-   sodipodi:docname="r.svg"
+   sodipodi:docname="r_shad.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -30,7 +30,11 @@
       stroke-dasharray:none;
       stroke-linecap:round;
       stroke-linejoin:round;
-      stroke-opacity:1
+      stroke-opacity:1;
+    }
+    .shadow {
+      stroke:none;
+      filter:url(#filterBlur);
     }
   </style>
   <style
@@ -100,6 +104,18 @@
        x2="772.14215"
        y2="750.5813"
        gradientTransform="matrix(1.0781991,0,0,1.0781991,-15.986363,-71.10193)" />
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       id="filterBlur"
+       x="-0.19086554"
+       y="-0.16337513"
+       width="1.3817311"
+       height="1.3267503">
+      <feGaussianBlur
+         stdDeviation="50 50"
+         result="blur"
+         id="feGaussianBlur13" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -108,20 +124,20 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.84852814"
-     inkscape:cx="275.18239"
-     inkscape:cy="541.52594"
+     inkscape:zoom="1.6970563"
+     inkscape:cx="449.89669"
+     inkscape:cy="282.84271"
      inkscape:current-layer="rook"
      inkscape:document-units="px"
-     inkscape:window-width="1140"
-     inkscape:window-height="804"
-     inkscape:window-x="371"
-     inkscape:window-y="97"
+     inkscape:window-width="1846"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:showpageshadow="2"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:window-maximized="0" />
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata36225">
     <rdf:RDF>
@@ -160,6 +176,11 @@
       </cc:License>
     </rdf:RDF>
   </metadata>
+  <path
+     id="shadow"
+     style="fill:#000000"
+     class="base shadow"
+     d="M 786.62109 130.53516 L 672.02539 130.62109 C 665.50199 146.3148 661.43174 174.20396 651.0293 177.22461 C 629.25037 183.54876 612.23024 189.36932 598.42188 194.79297 C 609.56719 197.98361 657.21224 217.66406 649.16211 231.00391 C 641.18366 244.22503 569.06225 247.83792 554.58984 230.91016 C 546.74999 221.74021 569.28821 204.47364 598.42188 194.79297 C 586.33076 190.27722 571.9275 185.45814 554.58789 180.29492 C 540.90081 176.21932 533.09774 145.05512 530.86328 130.72461 L 414.80664 130.80859 C 409.25057 147.29434 406.46571 176.20844 394.33203 179.98438 C 372.63443 186.73656 355.6059 192.85922 341.73828 198.5 C 352.88361 201.69064 395.63411 217.53124 387.58398 230.87109 C 379.60553 244.09216 310.10718 251.6387 295.63477 234.71094 C 287.79492 225.54099 312.60462 208.18067 341.73828 198.5 C 327.59736 193.47818 310.19219 188.12502 287.94141 182.36328 C 265.92461 176.66213 273.05224 143.47705 265.84961 130.91992 L 157.90625 130.99805 C 163.67204 193.35758 168.60105 249.3906 217.2207 311.81445 L 716.32227 309.22656 C 762.00319 248.21788 773.05505 189.45832 786.62109 130.53516 z M 275.82227 345.62891 L 275.82227 743.23828 L 652.84375 743.23828 L 652.84375 345.62891 L 275.82227 345.62891 z M 228.12109 781.16211 C 195.59568 814.71004 199.22971 837.72905 188.12109 865.04102 L 742.30078 865.04102 C 735.78967 836.59712 737.75041 807.4872 704.30078 781.16211 L 228.12109 781.16211 z " />
   <path
      id="boundary"
      class="base stroke-color stroke-boundary"

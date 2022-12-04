@@ -7,7 +7,7 @@
    id="queen"
    viewBox="0 0 933.333 933.333"
    sodipodi:version="0.32"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    version="1.0"
    inkscape:export-filename="/home/maurizio/out/wq.png"
    inkscape:export-xdpi="90"
@@ -31,6 +31,10 @@
       stroke-linecap:round;
       stroke-linejoin:round;
       stroke-opacity:1
+    }
+    .shadow {
+      stroke:none;
+      filter:url(#filterBlur);
     }
   </style>
   <style
@@ -100,6 +104,18 @@
        y2="587.11981"
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(1.0787342,0,0,1.0787342,-2.3077715,-9.8031988)" />
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       id="filterBlur"
+       x="-0.19086554"
+       y="-0.16337513"
+       width="1.3817311"
+       height="1.3267503">
+      <feGaussianBlur
+         stdDeviation="50 50"
+         result="blur"
+         id="feGaussianBlur13" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -108,20 +124,20 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.6970563"
-     inkscape:cx="652.89526"
-     inkscape:cy="635.80685"
+     inkscape:zoom="0.60000001"
+     inkscape:cx="385.83333"
+     inkscape:cy="624.99999"
      inkscape:current-layer="queen"
      inkscape:document-units="px"
-     inkscape:window-width="1519"
-     inkscape:window-height="909"
-     inkscape:window-x="162"
-     inkscape:window-y="32"
+     inkscape:window-width="1846"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:showpageshadow="2"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:window-maximized="0" />
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata36225">
     <rdf:RDF>
@@ -160,6 +176,11 @@
       </cc:License>
     </rdf:RDF>
   </metadata>
+  <path
+     id="shadow"
+     style="fill:#000"
+     class="base shadow"
+     d="M 481.66211 105.73438 C 446.87054 294.25844 434.02583 488.18267 404.29297 594.35742 C 362.88485 516.652 316.40104 370.32103 253.35156 155.10742 C 252.36345 378.5277 276.31858 548.11309 313.75781 663.95312 C 265.60296 629.74079 196.47527 521.61677 92.744141 306.71484 C 104.62467 526.6095 158.1952 682.41239 249.64453 773.36914 L 683.36328 773.36914 C 776.54295 683.54851 831.01778 530.15916 852.64453 312.51367 C 742.19338 552.17546 671.76749 658.41559 624.38867 677.26367 C 669.63029 560.65142 703.16855 385.64794 711.81445 151.90625 C 642.51991 359.53536 591.23682 503.28778 547.67578 583.73828 C 521.1618 474.03892 509.45696 286.83849 481.66211 105.73438 z M 228.99023 809.1582 L 228.99023 879.27539 L 698.82422 879.27539 L 698.82422 809.1582 L 228.99023 809.1582 z " />
   <path
      id="boundary"
      class="base stroke-color stroke-boundary"

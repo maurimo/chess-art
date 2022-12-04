@@ -7,7 +7,7 @@
    id="pawn"
    viewBox="0 0 933.333 933.333"
    sodipodi:version="0.32"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    version="1.0"
    inkscape:export-filename="/home/maurizio/out/wp.png"
    inkscape:export-xdpi="90"
@@ -31,6 +31,10 @@
       stroke-linecap:round;
       stroke-linejoin:round;
       stroke-opacity:1
+    }
+    .shadow {
+      stroke:none;
+      filter:url(#filterBlur);
     }
   </style>
   <style
@@ -80,6 +84,18 @@
        y2="718.33331"
        gradientUnits="userSpaceOnUse"
        gradientTransform="translate(22.66667,9.666667)" />
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       id="filterBlur"
+       x="-0.19086554"
+       y="-0.16337513"
+       width="1.3817311"
+       height="1.3267503">
+      <feGaussianBlur
+         stdDeviation="50 50"
+         result="blur"
+         id="feGaussianBlur13" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -89,19 +105,19 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.21213203"
-     inkscape:cx="327.62615"
+     inkscape:cx="-596.32673"
      inkscape:cy="452.54835"
-     inkscape:current-layer="svg36220"
+     inkscape:current-layer="pawn"
      inkscape:document-units="px"
-     inkscape:window-width="869"
-     inkscape:window-height="757"
-     inkscape:window-x="6"
-     inkscape:window-y="56"
+     inkscape:window-width="1846"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:showpageshadow="2"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:window-maximized="0" />
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata36225">
     <rdf:RDF>
@@ -140,6 +156,14 @@
       </cc:License>
     </rdf:RDF>
   </metadata>
+  <ellipse
+     class="base shadow"
+     style="fill:#000"
+     id="shadow"
+     cx="477.66666"
+     cy="614.66669"
+     rx="181.66667"
+     ry="185" />
   <ellipse
      class="base stroke-color stroke-boundary"
      style="fill:none"

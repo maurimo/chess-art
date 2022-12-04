@@ -7,7 +7,7 @@
    id="knight"
    viewBox="0 0 933.333 933.333"
    sodipodi:version="0.32"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    version="1.0"
    inkscape:export-filename="/home/maurizio/out/wn.png"
    inkscape:export-xdpi="90"
@@ -31,6 +31,10 @@
       stroke-linecap:round;
       stroke-linejoin:round;
       stroke-opacity:1
+    }
+    .shadow {
+      stroke:none;
+      filter:url(#filterBlur);
     }
   </style>
   <style
@@ -80,6 +84,18 @@
        y2="814.15625"
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(1.1088151,0,0,1.1088151,-23.077232,-23.377473)" />
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       id="filterBlur"
+       x="-0.19086554"
+       y="-0.16337513"
+       width="1.3817311"
+       height="1.3267503">
+      <feGaussianBlur
+         stdDeviation="50 50"
+         result="blur"
+         id="feGaussianBlur13" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -88,15 +104,15 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.32"
-     inkscape:cx="268.75"
-     inkscape:cy="443.75"
-     inkscape:current-layer="svg36220"
+     inkscape:zoom="0.64"
+     inkscape:cx="139.0625"
+     inkscape:cy="418.75"
+     inkscape:current-layer="knight"
      inkscape:document-units="px"
-     inkscape:window-width="1268"
-     inkscape:window-height="931"
-     inkscape:window-x="6"
-     inkscape:window-y="56"
+     inkscape:window-width="1651"
+     inkscape:window-height="1068"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
      inkscape:showpageshadow="2"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
@@ -140,6 +156,12 @@
       </cc:License>
     </rdf:RDF>
   </metadata>
+  <path
+     class="base shadow"
+     style="fill:#000"
+     d="m 391.90912,61.450044 c -1.87108,129.020126 4.71982,80.296336 -76.69714,20.735693 12.56487,84.162693 4.03621,86.935523 -17.71405,122.949753 -11.9034,19.70971 -22.39347,81.76996 -29.84171,95.44939 -45.13264,82.89059 -148.78572,191.10338 -148.60689,226.38142 0.22637,44.65606 53.3369,84.62878 101.91888,37.40667 -45.45156,66.53561 91.77418,-0.30152 149.28111,-41.34129 76.12165,46.86106 182.46981,-4.41788 184.44662,-79.71127 C 589.33625,613.62991 265.8615,643.2097 248.58246,864.1159 489.66461,919.14963 623.94374,739.8463 770.88819,878.50042 846.00572,660.69889 852.93779,296.63376 503.72619,160.13458 456.26353,141.58247 436.32473,93.860474 391.90912,61.450044 Z M 390.45227,301.7017 c -7.89238,11.19789 -24.48987,29.47575 -39.0526,26.79941 -13.46457,-2.47452 -18.88219,-7.03827 -19.50352,-22.98358 -0.52315,-13.4254 47.04822,-12.99238 58.55612,-3.81583 z"
+     id="shadow"
+     sodipodi:nodetypes="ccssscccccsccssc" />
   <path
      class="base stroke-color stroke-boundary"
      style="fill:none"
