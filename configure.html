@@ -473,8 +473,8 @@
         update_black_shadows(null, col.toHexString());
         update_variables({ "black-shadow": col.toHexString().substring(1) });
       };
-      $("#white-shadow-colorpicker").spectrum({
-        color: all_vars['white-shadow'] || "#5b5b5b",
+      $("#black-shadow-colorpicker").spectrum({
+        color: all_vars['black-shadow'] || "#5b5b5b",
         showAlpha: true,
         move: edit_black_shadows,
         hide: edit_black_shadows,
@@ -484,8 +484,8 @@
         update_white_shadows(null, col.toHexString());
         update_variables({ "white-shadow": col.toHexString().substring(1) });
       };
-      $("#black-shadow-colorpicker").spectrum({
-        color: all_vars['black-shadow'] || "#5b5b5b",
+      $("#white-shadow-colorpicker").spectrum({
+        color: all_vars['white-shadow'] || "#5b5b5b",
         showAlpha: true,
         move: edit_white_shadows,
         hide: edit_white_shadows,
@@ -723,14 +723,14 @@
         </p>
         <div style="padding-left: 2em" id="shadow-options">
           <p style="display: flex; align-items: center">
-            <label for="white-shadow-colorpicker" class="ui-widget ui-state-default"
-              style="border:none; background: none;">White&nbsp;shadow:&nbsp;</label>
-            <input type='text' id='white-shadow-colorpicker' class="ui-widget colorpicker" />
-          </p>
-          <p style="display: flex; align-items: center">
             <label for="black-shadow-colorpicker" class="ui-widget ui-state-default"
               style="border:none; background: none;">Black&nbsp;shadow:&nbsp;</label>
             <input type='text' id='black-shadow-colorpicker' class="ui-widget colorpicker" />
+          </p>
+          <p style="display: flex; align-items: center">
+            <label for="white-shadow-colorpicker" class="ui-widget ui-state-default"
+              style="border:none; background: none;">White&nbsp;shadow:&nbsp;</label>
+            <input type='text' id='white-shadow-colorpicker' class="ui-widget colorpicker" />
           </p>
           <p style="display: flex; align-items: center">
             <label for="shadow-slant-slider" class="ui-widget ui-state-default"
