@@ -42,7 +42,7 @@
 
     function update_black_shadows(els, blackShad) {
       els ||= $('.board embed.b');
-      blackShad ||=  document.getElementById('black-shadow-colorpicker').value;
+      blackShad ||= document.getElementById('black-shadow-colorpicker').value;
       let bsvgs = els.map(function (index, el) { return el.getSVGDocument(); }).find('svg');
       bsvgs.find('#shadow').each((i, p) => {
         p.style = 'fill:' + blackShad;
@@ -157,7 +157,7 @@
     function get_svg(id) {
       let svgOrig = $(document.getElementById(id).getSVGDocument()).find('svg')[0];
       let svg = svgOrig.cloneNode(true);
-      if(get_variable('shadow', 'blurred') == 'none') {
+      if (get_variable('shadow', 'blurred') == 'none') {
         $(svg).find('#shadow, #filterBlur').remove();
       }
       let retv = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n' + svg.outerHTML;
@@ -168,11 +168,11 @@
       console.log("onload:", event.target);
       load_piece(event.target);
       const els = $(event.target);
-      if(get_variable('shadow', 'blurred') == 'none') {
+      if (get_variable('shadow', 'blurred') == 'none') {
         hide_shadows(els);
       } else {
         update_shadow_geometries(els);
-        if(els.hasClass('b')) {
+        if (els.hasClass('b')) {
           update_black_shadows(els, null);
         } else {
           update_white_shadows(els, null);
@@ -364,52 +364,70 @@
         },
       }).val(all_vars['boundary'] || 35);
 
+      let edit_black_col1 = (col) => {
+        set_black_gradient_1(col.toHexString());
+        update_variables({ "b1": col.toHexString().substring(1) });
+      };
       $("#black-1-colorpicker").spectrum({
-        color: all_vars['b1'] || "#877f73",
+        color: all_vars['b1'] || "#7f899b",
         showAlpha: false,
-        move: (col) => { set_black_gradient_1(col.toHexString()); },
-        hide: (col) => { set_black_gradient_1(col.toHexString()); },
-        change: (col) => { update_variables({ "b1": col.toHexString().substring(1) }); },
+        move: edit_black_col1,
+        hide: edit_black_col1,
       });
 
+      let edit_black_col2 = (col) => {
+        set_black_gradient_2(col.toHexString());
+        update_variables({ "b2": col.toHexString().substring(1) });
+      };
       $("#black-2-colorpicker").spectrum({
-        color: all_vars['b2'] || "#303030",
+        color: all_vars['b2'] || "#1c1c2f",
         showAlpha: false,
-        move: (col) => { set_black_gradient_2(col.toHexString()); },
-        hide: (col) => { set_black_gradient_2(col.toHexString()); },
-        change: (col) => { update_variables({ "b2": col.toHexString().substring(1) }); },
+        move: edit_black_col2,
+        hide: edit_black_col2,
       });
 
+      let edit_black_stroke = (col) => {
+        set_black_stroke(col.toHexString());
+        update_variables({ "bs": col.toHexString().substring(1) });
+      }
       $("#black-s-colorpicker").spectrum({
         color: all_vars['bs'] || "black",
         showAlpha: false,
-        move: (col) => { set_black_stroke(col.toHexString()); },
-        hide: (col) => { set_black_stroke(col.toHexString()); },
-        change: (col) => { update_variables({ "bs": col.toHexString().substring(1) }); },
+        move: edit_black_stroke,
+        hide: edit_black_stroke,
       });
 
+      let edit_white_col1 = (col) => {
+        set_white_gradient_1(col.toHexString());
+        update_variables({ "w1": col.toHexString().substring(1) });
+      };
       $("#white-1-colorpicker").spectrum({
         color: all_vars['w1'] || "white",
         showAlpha: false,
-        move: (col) => { set_white_gradient_1(col.toHexString()); },
-        hide: (col) => { set_white_gradient_1(col.toHexString()); },
-        change: (col) => { update_variables({ "w1": col.toHexString().substring(1) }); },
+        move: edit_white_col1,
+        hide: edit_white_col1,
       });
 
+      let edit_white_col2 = (col) => {
+        set_white_gradient_2(col.toHexString());
+        update_variables({ "w2": col.toHexString().substring(1) });
+      };
       $("#white-2-colorpicker").spectrum({
         color: all_vars['w2'] || "#bfd3d7",
         showAlpha: false,
-        move: (col) => { set_white_gradient_2(col.toHexString()); },
-        hide: (col) => { set_white_gradient_2(col.toHexString()); },
-        change: (col) => { update_variables({ "w2": col.toHexString().substring(1) }); },
+        move: edit_white_col2,
+        hide: edit_white_col2,
       });
 
+      let edit_white_stroke = (col) => {
+        set_white_stroke(col.toHexString());
+        update_variables({ "ws": col.toHexString().substring(1) });
+      }
       $("#white-s-colorpicker").spectrum({
         color: all_vars['ws'] || "black",
         showAlpha: false,
-        move: (col) => { set_white_stroke(col.toHexString()); },
-        hide: (col) => { set_white_stroke(col.toHexString()); },
-        change: (col) => { update_variables({ "ws": col.toHexString().substring(1) }); },
+        move: edit_white_stroke,
+        hide: edit_white_stroke,
       });
 
       $("#download-button").button().click(function () {
@@ -454,51 +472,74 @@
       });
       $('#shadow-options').css('display', sstyle == 'none' ? 'none' : '');
 
+      let edit_black_shadows = (col) => {
+        update_black_shadows(null, col.toHexString());
+        update_variables({ "black-shadow": col.toHexString().substring(1) });
+      };
       $("#white-shadow-colorpicker").spectrum({
         color: all_vars['white-shadow'] || "#5b5b5b",
         showAlpha: true,
-        move: (col) => { update_white_shadows(null, col.toHexString()); },
-        hide: (col) => { update_white_shadows(null, col.toHexString()); },
-        change: (col) => { update_variables({ "white-shadow": col.toHexString().substring(1) }); },
+        move: edit_black_shadows,
+        hide: edit_black_shadows,
       });
+
+      let edit_white_shadows = (col) => {
+        update_white_shadows(null, col.toHexString());
+        update_variables({ "white-shadow": col.toHexString().substring(1) });
+      };
       $("#black-shadow-colorpicker").spectrum({
         color: all_vars['black-shadow'] || "#5b5b5b",
         showAlpha: true,
-        move: (col) => { update_black_shadows(null, col.toHexString()); },
-        hide: (col) => { update_black_shadows(null, col.toHexString()); },
-        change: (col) => { update_variables({ "black-shadow": col.toHexString().substring(1) }); },
+        move: edit_white_shadows,
+        hide: edit_white_shadows,
       });
+
+      let edit_shadow_slant = (event, ui) => {
+        update_variables({ "shadow-slant": ui.value });
+        update_shadow_geometries();
+      };
       $("#shadow-slant-slider").slider({
         value: all_vars['shadow-slant'] || 5,
         min: 0,
         max: 20,
-        change: (event, ui) => {
-          update_variables({ "shadow-slant": ui.value }); update_shadow_geometries();
-        },
+        change: edit_shadow_slant,
+        slide: edit_shadow_slant,
       });
+
+      let edit_shadow_flatten = (event, ui) => {
+        update_variables({ "shadow-flatten": ui.value });
+        update_shadow_geometries();
+      };
       $("#shadow-flatten-slider").slider({
         value: all_vars['shadow-flatten'] || 7,
         min: 0,
         max: 30,
-        change: (event, ui) => {
-          update_variables({ "shadow-flatten": ui.value }); update_shadow_geometries();
-        },
+        change: edit_shadow_flatten,
+        slide: edit_shadow_flatten,
       });
+
+      let edit_shadow_blur = (event, ui) => {
+        update_variables({ "shadow-blur": ui.value });
+        update_shadow_geometries();
+      };
       $("#shadow-blur-slider").slider({
         value: all_vars['shadow-blur'] || 25,
         min: 0,
         max: 75,
-        change: (event, ui) => {
-          update_variables({ "shadow-blur": ui.value }); update_shadow_geometries();
-        },
+        change: edit_shadow_blur,
+        slide: edit_shadow_blur,
       });
+
+      let edit_shadow_diag = (event, ui) => {
+        update_variables({ "shadow-diag": ui.value });
+        update_shadow_geometries();
+      };
       $("#shadow-diag-slider").slider({
         value: all_vars['shadow-diag'] || 40,
         min: 0,
         max: 100,
-        change: (event, ui) => {
-          update_variables({ "shadow-diag": ui.value }); update_shadow_geometries();
-        },
+        change: edit_shadow_diag,
+        slide: edit_shadow_diag,
       });
 
       load_board();
