@@ -7,7 +7,7 @@
    viewBox="0 0 933.333 933.333"
    version="1.1"
    id="pawn"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    sodipodi:docname="p.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -24,6 +24,10 @@
       stroke-linecap:round;
       stroke-linejoin:round;
       stroke-opacity:1
+    }
+    .shadow {
+      stroke:none;
+      filter:url(#filterBlur);
     }
   </style>
   <style
@@ -68,14 +72,15 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.38529391"
-     inkscape:cx="-106.41227"
+     inkscape:cx="-66.183242"
      inkscape:cy="88.244322"
-     inkscape:window-width="1920"
-     inkscape:window-height="1011"
+     inkscape:window-width="1846"
+     inkscape:window-height="1016"
      inkscape:window-x="0"
-     inkscape:window-y="32"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer2" />
+     inkscape:current-layer="pawn"
+     inkscape:pageshadow="2" />
   <defs
      id="defs2718">
     <linearGradient
@@ -99,7 +104,26 @@
          offset="1"
          style="stop-color:#00ffff;stop-opacity:1;" />
     </linearGradient>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       id="filterBlur"
+       x="-0.19086554"
+       y="-0.16337513"
+       width="1.3817311"
+       height="1.3267503">
+      <feGaussianBlur
+         stdDeviation="50 50"
+         result="blur"
+         id="feGaussianBlur13" />
+    </filter>
   </defs>
+  <path
+     sodipodi:nodetypes="cscsccssccscss"
+     id="shadow"
+     d="m 464.0575,199.74039 c -72.15846,0.81417 -129.80919,57.83356 -134.58788,124.16971 -2.36973,32.901 45.30036,89.02327 73.2071,106.57202 -137.42662,30.97766 -2.67542,70.59147 -2.67493,127.68933 0,39.45432 -53.46146,65.73995 -24.19067,91.06165 -15.91384,64.13115 -62.56659,87.32876 -119.22845,113.51068 -27.87732,35.67682 -12.92202,95.24899 39.38116,98.67212 36.7384,2.40438 307.5307,3.06172 345.47922,-1.12619 58.22843,-6.42623 67.32145,-67.31008 40.45166,-100.9358 -57.0767,-17.68383 -118.66052,-42.65229 -131.13967,-108.71293 30.29466,-25.40156 -31.51034,-52.2607 -31.51084,-92.46942 0,-57.08924 150.11814,-90.33556 6.33503,-127.68933 27.90626,-17.54879 72.3951,-73.59576 73.20665,-106.57204 C 600.3791,259.16677 533.04967,198.96193 464.0575,199.74048 Z"
+     class="base shadow"
+     style="fill:#000"
+     inkscape:connector-curvature="0" />
   <path
      sodipodi:nodetypes="cscsccssccscss"
      id="boundary"

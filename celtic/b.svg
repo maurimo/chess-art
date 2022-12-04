@@ -7,7 +7,7 @@
    viewBox="0 0 933.333 933.333"
    version="1.1"
    id="bishop"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    sodipodi:docname="b.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -28,12 +28,13 @@
      inkscape:zoom="0.54488788"
      inkscape:cx="-6.4233398"
      inkscape:cy="266.10979"
-     inkscape:window-width="1920"
-     inkscape:window-height="1011"
+     inkscape:window-width="1846"
+     inkscape:window-height="1016"
      inkscape:window-x="0"
-     inkscape:window-y="32"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg1930" />
+     inkscape:current-layer="bishop"
+     inkscape:pageshadow="2" />
   <style
      id="style-base">
     .base { 
@@ -44,6 +45,10 @@
       stroke-linecap:round;
       stroke-linejoin:round;
       stroke-opacity:1
+    }
+    .shadow {
+      stroke:none;
+      filter:url(#filterBlur);
     }
   </style>
   <style
@@ -99,7 +104,26 @@
          offset="1"
          style="stop-color:#00ffff;stop-opacity:1;" />
     </linearGradient>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       id="filterBlur"
+       x="-0.19086554"
+       y="-0.16337513"
+       width="1.3817311"
+       height="1.3267503">
+      <feGaussianBlur
+         stdDeviation="50 50"
+         result="blur"
+         id="feGaussianBlur13" />
+    </filter>
   </defs>
+  <path
+     sodipodi:nodetypes="cscccccsssscccsccscccsc"
+     id="shadow"
+     d="m 468.08948,49.90709 c -34.40237,0 -62.32311,23.26734 -62.32311,51.93597 0,8.29319 2.33806,16.0899 6.49188,23.0466 -71.16199,19.98405 -122.53638,78.92362 -122.53647,164.08523 2.82128,77.63548 42.10427,149.5842 105.17042,194.27302 -62.94808,24.69512 -3.08417,52.26818 -3.08368,118.09324 -45.76639,82.55914 -61.51832,90.39543 -139.41569,148.34218 -6.07036,4.29105 -52.83653,9.27505 -57.1296,14.7692 -32.13784,41.12994 -14.85369,109.82601 45.44397,113.7723 42.35375,2.77195 416.859,3.52967 460.60725,-1.29831 67.1287,-7.40841 77.55681,-77.60387 46.58006,-116.36902 -4.74445,-5.93731 -51.95547,-11.13182 -58.59021,-15.2562 -61.27632,-33.46353 -138.92785,-82.45248 -160.02777,-143.96007 -8e-5,-65.81501 70.2354,-93.39219 7.30349,-118.09325 65.0582,-44.86332 102.539,-110.14166 109.87707,-194.273 4.01069,-45.98284 -21.39801,-92.01673 -60.70013,-124.80859 l -64.27081,145.58298 c -6.55488,14.87016 -23.75719,21.64875 -38.62739,15.0939 -14.87016,-6.55487 -21.64879,-23.91951 -15.09387,-38.78968 l 67.51675,-153.04878 c -4.39503,-1.90718 -8.79059,-3.60902 -13.30857,-5.19363 5.34354,-7.65946 8.43959,-16.47579 8.43959,-25.96803 0,-28.66863 -27.92078,-51.93597 -62.32318,-51.93597 z"
+     class="base shadow"
+     style="fill:#000"
+     inkscape:connector-curvature="0" />
   <path
      sodipodi:nodetypes="cscccccsssscccsccscccsc"
      id="boundary"
