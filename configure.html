@@ -22,17 +22,76 @@
 
   <script language="JavaScript" type="text/javascript">
 
-    function download(filename, text) {
-      var element = document.createElement('a');
-      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-      element.setAttribute('download', filename);
+    function hide_shadows(els) {
+      els ||= $('.board embed');
+      let svgs = $('.board embed').map(function (index, el) { return el.getSVGDocument(); }).find('svg');
+      svgs.find('#shadow').each((i, p) => {
+        p.style = 'display:none';
+      });
+      svgs.find('path, rect, ellipse').each((i, p) => { p.removeAttribute('transform'); });
+    }
 
-      element.style.display = 'none';
-      document.body.appendChild(element);
+    function update_white_shadows(els, whiteShad) {
+      els ||= $('.board embed.w');
+      whiteShad ||= document.getElementById('white-shadow-colorpicker').value;
+      let wsvgs = els.map(function (index, el) { return el.getSVGDocument(); }).find('svg');
+      wsvgs.find('#shadow').each((i, p) => {
+        p.style = 'fill:' + whiteShad;
+      });
+    }
 
-      element.click();
+    function update_black_shadows(els, blackShad) {
+      els ||= $('.board embed.b');
+      blackShad ||=  document.getElementById('black-shadow-colorpicker').value;
+      let bsvgs = els.map(function (index, el) { return el.getSVGDocument(); }).find('svg');
+      bsvgs.find('#shadow').each((i, p) => {
+        p.style = 'fill:' + blackShad;
+      });
+    }
 
-      document.body.removeChild(element);
+    function update_shadow_geometries() {
+      let slant = $('#shadow-slant-slider').slider("option", "value");
+      let blur = $('#shadow-blur-slider').slider("option", "value");
+      let flatten = $('#shadow-flatten-slider').slider("option", "value");
+      let diag = $('#shadow-diag-slider').slider("option", "value");
+
+      let svgSize = 933;
+      let margin = 60; // default margin in SVG
+      let figSize = svgSize - 2 * margin;
+      let slantRatio = Math.tan(slant * Math.PI / 180);
+      let shadowRelYscale = (100 - flatten) / 100;
+      let xOff = figSize * shadowRelYscale * slantRatio + 2 * blur + diag;
+      let yOff = 2 * blur + diag;
+      let scale = Math.min(svgSize / (figSize + Math.max(xOff, yOff)), figSize / (figSize + diag));
+      let dy1 = margin - margin * scale; // value to fix top
+      let dy2 = (svgSize - margin) - (margin + figSize + diag) * scale; // value to fix bottom
+      let dx1 = margin - margin * scale; // value to fix left
+      let dx2 = (svgSize - margin) - (margin + figSize + diag + figSize * slantRatio) * scale; // value to fix right
+      let dy = (dy1 + dy2) / 2;
+      let dx = (dx1 + dx2) / 2;
+      let shadowYscale = shadowRelYscale * scale;
+
+      let els = arguments.length >= 1 ? arguments[0] : $('.board embed');
+      let svgs = els.map(function (index, el) { return el.getSVGDocument(); }).find('svg');
+
+      // set transforms on paths (and shadows)
+      svgs.find('path, rect, ellipse').each((i, p) => {
+        if (p.id == 'shadow') {
+          let bb = p.getBBox();
+          let test_y = bb.y + bb.height; // impose equality at bb.y + bb.height
+          let new_x = -slantRatio * test_y;
+          let new_y = shadowYscale * test_y;
+          let sdx = dx - new_x + diag; // compare expected x and computed x
+          let sdy = (dy + scale * test_y) - new_y + diag;
+          p.setAttribute('transform', 'matrix(' + scale + ', 0, ' + (-slantRatio) + ', ' + shadowYscale + ', ' + sdx + ', ' + sdy + ')');
+        } else {
+          p.setAttribute('transform', 'matrix(' + scale + ', 0, 0, ' + scale + ', ' + dx + ', ' + dy + ')');
+        }
+      });
+
+      svgs.find('#filterBlur feGaussianBlur').each((i, f) => {
+        f.setAttribute('stdDeviation', blur + ' ' + blur);
+      });
     }
 
     function load_piece(el) {
@@ -96,17 +155,34 @@
     }
 
     function get_svg(id) {
-      let svg = $(document.getElementById(id).getSVGDocument()).find('svg');
-      return '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n' + svg[0].outerHTML;
+      let svgOrig = $(document.getElementById(id).getSVGDocument()).find('svg')[0];
+      let svg = svgOrig.cloneNode(true);
+      if(get_variable('shadow', 'blurred') == 'none') {
+        $(svg).find('#shadow, #filterBlur').remove();
+      }
+      let retv = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n' + svg.outerHTML;
+      return retv;
     }
 
     function piece_onload(event) {
+      console.log("onload:", event.target);
       load_piece(event.target);
+      const els = $(event.target);
+      if(get_variable('shadow', 'blurred') == 'none') {
+        hide_shadows(els);
+      } else {
+        update_shadow_geometries(els);
+        if(els.hasClass('b')) {
+          update_black_shadows(els, null);
+        } else {
+          update_white_shadows(els, null);
+        }
+      }
     }
 
     function install_piece_onload() {
       for (let el of $(".board embed")) {
-        el.addEventListener('load', piece_onload);
+        el.addEventListener('load', piece_onload, false);
       }
     }
 
@@ -206,6 +282,11 @@
         el.className = pc[0];
         $(el).css("visibility", "hidden");
         el.src = set + "/" + pc[1] + ".svg";
+
+        // force reload, needed for some browsers
+        let par = el.parentNode;
+        el.remove();
+        par.appendChild(el);
       }
     }
 
@@ -349,6 +430,77 @@
           });
       });
 
+      let ss_options = $("#shadow-select").find("option");
+      let ss_all_sets = ss_options.map((i, el) => { return el.value; }).toArray();
+      let sstyle = all_vars["shadow"] || "blurred";
+      if (ss_all_sets.indexOf(sstyle) == -1) {
+        sstyle = "blurred";
+      }
+      let ss_index = ss_all_sets.indexOf(sstyle);
+      ss_options[ss_index].selected = "selected";
+      $("#shadow-select").selectmenu({
+        change: (event, ui) => {
+          update_variables({ "shadow": ui.item.value });
+          if (ui.item.value == 'none') {
+            hide_shadows(null);
+            $('#shadow-options').css('display', 'none');
+          } else {
+            update_white_shadows(null, null);
+            update_black_shadows(null, null);
+            update_shadow_geometries();
+            $('#shadow-options').css('display', '');
+          }
+        }
+      });
+      $('#shadow-options').css('display', sstyle == 'none' ? 'none' : '');
+
+      $("#white-shadow-colorpicker").spectrum({
+        color: all_vars['white-shadow'] || "#5b5b5b",
+        showAlpha: true,
+        move: (col) => { update_white_shadows(null, col.toHexString()); },
+        hide: (col) => { update_white_shadows(null, col.toHexString()); },
+        change: (col) => { update_variables({ "white-shadow": col.toHexString().substring(1) }); },
+      });
+      $("#black-shadow-colorpicker").spectrum({
+        color: all_vars['black-shadow'] || "#5b5b5b",
+        showAlpha: true,
+        move: (col) => { update_black_shadows(null, col.toHexString()); },
+        hide: (col) => { update_black_shadows(null, col.toHexString()); },
+        change: (col) => { update_variables({ "black-shadow": col.toHexString().substring(1) }); },
+      });
+      $("#shadow-slant-slider").slider({
+        value: all_vars['shadow-slant'] || 5,
+        min: 0,
+        max: 20,
+        change: (event, ui) => {
+          update_variables({ "shadow-slant": ui.value }); update_shadow_geometries();
+        },
+      });
+      $("#shadow-flatten-slider").slider({
+        value: all_vars['shadow-flatten'] || 7,
+        min: 0,
+        max: 30,
+        change: (event, ui) => {
+          update_variables({ "shadow-flatten": ui.value }); update_shadow_geometries();
+        },
+      });
+      $("#shadow-blur-slider").slider({
+        value: all_vars['shadow-blur'] || 25,
+        min: 0,
+        max: 75,
+        change: (event, ui) => {
+          update_variables({ "shadow-blur": ui.value }); update_shadow_geometries();
+        },
+      });
+      $("#shadow-diag-slider").slider({
+        value: all_vars['shadow-diag'] || 40,
+        min: 0,
+        max: 100,
+        change: (event, ui) => {
+          update_variables({ "shadow-diag": ui.value }); update_shadow_geometries();
+        },
+      });
+
       load_board();
 
       install_piece_onload();
@@ -392,6 +544,10 @@
       width: 150px;
       height: 150px;
     }
+
+    .ui-slider {
+      width: 8em;
+    }
   </style>
 </head>
 
@@ -403,39 +559,39 @@
       <td>
         <table class="board" style="margin: 0 auto; border: 3px solid black">
           <tr>
-            <td class="light"><object><embed id='sqA5'></object></td>
-            <td class="dark"><object><embed id='sqB5'></object></td>
-            <td class="light"><object><embed id='sqC5'></object></td>
-            <td class="dark"><object><embed id='sqD5'></object></td>
-            <td class="light"><object><embed id='sqE5'></object></td>
+            <td class="light"><embed id='sqA5' src="spatial/r.svg"></td>
+            <td class="dark"><embed id='sqB5'></td>
+            <td class="light"><embed id='sqC5'></td>
+            <td class="dark"><embed id='sqD5'></td>
+            <td class="light"><embed id='sqE5'></td>
           </tr>
           <tr>
-            <td class="dark"><object><embed id='sqA4'></object></td>
-            <td class="light"><object><embed id='sqB4'></object></td>
-            <td class="dark"><object><embed id='sqC4'></object></td>
-            <td class="light"><object><embed id='sqD4'></object></td>
-            <td class="dark"><object><embed id='sqE4'></object></td>
+            <td class="dark"><embed id='sqA4'></td>
+            <td class="light"><embed id='sqB4'></td>
+            <td class="dark"><embed id='sqC4'></td>
+            <td class="light"><embed id='sqD4'></td>
+            <td class="dark"><embed id='sqE4'></td>
           </tr>
           <tr>
-            <td class="light"><object><embed id='sqA3'></object></td>
-            <td class="dark"><object><embed id='sqB3'></object></td>
-            <td class="light"><object><embed id='sqC3'></object></td>
-            <td class="dark"><object><embed id='sqD3'></object></td>
-            <td class="light"><object><embed id='sqE3'></object></td>
+            <td class="light"><embed id='sqA3'></td>
+            <td class="dark"><embed id='sqB3'></td>
+            <td class="light"><embed id='sqC3'></td>
+            <td class="dark"><embed id='sqD3'></td>
+            <td class="light"><embed id='sqE3'></td>
           </tr>
           <tr>
-            <td class="dark"><object><embed id='sqA2'></object></td>
-            <td class="light"><object><embed id='sqB2'></object></td>
-            <td class="dark"><object><embed id='sqC2'></object></td>
-            <td class="light"><object><embed id='sqD2'></object></td>
-            <td class="dark"><object><embed id='sqE2'></object></td>
+            <td class="dark"><embed id='sqA2'></td>
+            <td class="light"><embed id='sqB2'></td>
+            <td class="dark"><embed id='sqC2'></td>
+            <td class="light"><embed id='sqD2'></td>
+            <td class="dark"><embed id='sqE2'></td>
           </tr>
           <tr>
-            <td class="light"><object><embed id='sqA1'></object></td>
-            <td class="dark"><object><embed id='sqB1'></object></td>
-            <td class="light"><object><embed id='sqC1'></object></td>
-            <td class="dark"><object><embed id='sqD1'></object></td>
-            <td class="light"><object><embed id='sqE1'></object></td>
+            <td class="light"><embed id='sqA1'></td>
+            <td class="dark"><embed id='sqB1'></td>
+            <td class="light"><embed id='sqC1'></td>
+            <td class="dark"><embed id='sqD1'></td>
+            <td class="light"><embed id='sqE1'></td>
           </tr>
         </table>
       </td>
@@ -475,6 +631,8 @@
             <option value="spatial">Spatial</option>
           </select>
         </p>
+
+        <!-- Ordinary options -->
         <p>
           <label for="stroke-spinner" class="ui-widget ui-state-default"
             style="border:none; background: none;">Inner&nbsp;stroke:</label>
@@ -515,6 +673,49 @@
             style="border:none; background: none;">White&nbsp;stroke:&nbsp;</label>
           <input type='text' id='white-s-colorpicker' class="ui-widget colorpicker" />
         </p>
+
+        <!-- Shadow options -->
+        <p style="margin-bottom: 0px">
+          <label for="shadow-select" class="ui-widget ui-state-default"
+            style="border:none; background: none;">Shadow:</label>
+          <select id="shadow-select">
+            <option value="none">None</option>
+            <option value="blurred">Blurred</option>
+          </select>
+        </p>
+        <div style="padding-left: 2em" id="shadow-options">
+          <p style="display: flex; align-items: center">
+            <label for="white-shadow-colorpicker" class="ui-widget ui-state-default"
+              style="border:none; background: none;">White&nbsp;shadow:&nbsp;</label>
+            <input type='text' id='white-shadow-colorpicker' class="ui-widget colorpicker" />
+          </p>
+          <p style="display: flex; align-items: center">
+            <label for="black-shadow-colorpicker" class="ui-widget ui-state-default"
+              style="border:none; background: none;">Black&nbsp;shadow:&nbsp;</label>
+            <input type='text' id='black-shadow-colorpicker' class="ui-widget colorpicker" />
+          </p>
+          <p style="display: flex; align-items: center">
+            <label for="shadow-slant-slider" class="ui-widget ui-state-default"
+              style="border:none; background: none;">Slant&nbsp;slope:&nbsp;</label>
+            <span id="shadow-slant-slider"></span>
+          </p>
+          <p style="display: flex; align-items: center">
+            <label for="shadow-flatten-slider" class="ui-widget ui-state-default"
+              style="border:none; background: none;">Flatten:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <span id="shadow-flatten-slider"></span>
+          </p>
+          <p style="display: flex; align-items: center">
+            <label for="shadow-blur-slider" class="ui-widget ui-state-default"
+              style="border:none; background: none;">Blur&nbsp;radius:&nbsp;&nbsp;</label>
+            <span id="shadow-blur-slider"></span>
+          </p>
+          <p style="display: flex; align-items: center">
+            <label for="shadow-diag-slider" class="ui-widget ui-state-default"
+              style="border:none; background: none;">Diag&nbsp;offset:&nbsp;&nbsp;&nbsp;</label>
+            <span id="shadow-diag-slider"></span>
+          </p>
+        </div>
+
         <p>
           <button id="download-button">Download!</button>
         </p>
@@ -527,6 +728,7 @@
       href="chrome://flags/#force-color-profile">chrome://flags/#force-color-profile</a> setting it to sRGB to get
     authentic colors.
   </p>
+  <div display="none" id="hiddenDiv"></div>
 </body>
 
 </html>
