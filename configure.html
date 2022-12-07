@@ -50,23 +50,25 @@
     }
 
     function update_shadow_geometries() {
-      let slant = $('#shadow-slant-slider').slider("option", "value");
-      let blur = $('#shadow-blur-slider').slider("option", "value");
-      let flatten = $('#shadow-flatten-slider').slider("option", "value");
-      let diag = $('#shadow-diag-slider').slider("option", "value");
+      let slant = Number($('#shadow-slant-slider').slider("option", "value"));
+      let blur = Number($('#shadow-blur-slider').slider("option", "value"));
+      let flatten = Number($('#shadow-flatten-slider').slider("option", "value"));
+      let diag = Number($('#shadow-diag-slider').slider("option", "value"));
 
       let svgSize = 933;
-      let margin = 60; // default margin in SVG
+      let margin = 80; // default margin in SVG
       let figSize = svgSize - 2 * margin;
       let slantRatio = Math.tan(slant * Math.PI / 180);
       let shadowRelYscale = (100 - flatten) / 100;
-      let xOff = figSize * shadowRelYscale * slantRatio + 2 * blur + diag;
-      let yOff = 2 * blur + diag;
+      let effectiveBlur = blur * 0.5;
+      let effectiveFigSize = figSize * 0.5;
+      let xOff = figSize * shadowRelYscale * slantRatio + 2 * effectiveBlur + diag;
+      let yOff = 2 * effectiveBlur + diag;
       let scale = Math.min(svgSize / (figSize + Math.max(xOff, yOff)), figSize / (figSize + diag));
       let dy1 = margin - margin * scale; // value to fix top
       let dy2 = (svgSize - margin) - (margin + figSize + diag) * scale; // value to fix bottom
       let dx1 = margin - margin * scale; // value to fix left
-      let dx2 = (svgSize - margin) - (margin + figSize + diag + figSize * slantRatio) * scale; // value to fix right
+      let dx2 = (svgSize - margin) - (margin + figSize + diag + effectiveFigSize * slantRatio) * scale; // value to fix right
       let dy = (dy1 + dy2) / 2;
       let dx = (dx1 + dx2) / 2;
       let shadowYscale = shadowRelYscale * scale;
@@ -95,15 +97,14 @@
     }
 
     function load_piece(el) {
-      $(el).css("visibility", "visible");
       let col = $(el).hasClass('b') ? 'black' : 'white';
       let svg = $(el.getSVGDocument()).find('svg');
 
       let gradient1 = document.getElementById(col + '-1-colorpicker').value;
       let gradient2 = document.getElementById(col + '-2-colorpicker').value;
       let strokeCol = document.getElementById(col + '-s-colorpicker').value;
-      let strokeSize = document.getElementById('stroke-spinner').value;
-      let boundarySize = document.getElementById('boundary-spinner').value;
+      let strokeSize = Number(document.getElementById('stroke-spinner').value);
+      let boundarySize = Number(document.getElementById('boundary-spinner').value);
       svg.find('#fillGradient #stop0').css('stop-color', gradient1);
       svg.find('#fillGradient #stop1').css('stop-color', gradient2);
       svg.find('#fill-color').html('.fill-color {fill: ' + gradient1 + '; }');
@@ -177,6 +178,7 @@
           update_white_shadows(els, null);
         }
       }
+      els.css("visibility", "visible");
     }
 
     function install_piece_onload() {
@@ -278,12 +280,13 @@
         let el = document.getElementById(id);
         el.className = pc[0];
         $(el).css("visibility", "hidden");
-        el.src = set + "/" + pc[1] + ".svg";
+        el.src = "";
 
         // force reload, needed for some browsers
         let par = el.parentNode;
         el.remove();
         par.appendChild(el);
+        el.src = set + "/" + pc[1] + ".svg";
       }
     }
 
