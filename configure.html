@@ -542,6 +542,18 @@
         slide: edit_shadow_diag,
       });
 
+      $("#accordion").accordion();
+      let largest = 0;
+      $("#accordion").children("div").each(function () {
+        if ($(this).width() > largest) {
+          largest = $(this).width();
+        }
+      });
+      $("#accordion").children("div").each(function () {
+        $(this).width(largest);
+      });
+
+
       load_board();
 
       install_piece_onload();
@@ -587,6 +599,12 @@
     }
 
     .ui-slider {
+      width: 9em;
+      margin-top: 0.4em;
+      margin-bottom: 0.4em;
+    }
+
+    .ui-selectmenu-button.ui-button {
       width: 8em;
     }
   </style>
@@ -637,32 +655,7 @@
         </table>
       </td>
       <td style="padding-left: 2em">
-        <p style="margin-bottom: 0px">
-          <label for="board-style-select" class="ui-widget ui-state-default"
-            style="border:none; background: none;">Board style:</label>
-          <select id="board-style-select">
-            <option value="lichess">Lichess</option>
-            <option value="chesscom">chess.com</option>
-            <option value="chesstempo">Chess Tempo</option>
-            <option value="banksia">Banksia</option>
-            <option value="nibbler">Nibbler</option>
-            <option value="arena">Arena</option>
-            <option value="chessbase">ChessBase</option>
-            <option value="custom">Custom...</option>
-          </select>
-        </p>
-        <div style="padding-left: 2em" id="custom-sq-colorpickers">
-          <p style="display: flex; align-items: center">
-            <label for="light-sq-colorpicker" class="ui-widget ui-state-default"
-              style="border:none; background: none;">Light&nbsp;squares:&nbsp;</label>
-            <input type='text' id='light-sq-colorpicker' class="ui-widget colorpicker" />
-          </p>
-          <p style="display: flex; align-items: center">
-            <label for="dark-sq-colorpicker" class="ui-widget ui-state-default"
-              style="border:none; background: none;">Dark&nbsp;squares:&nbsp;</label>
-            <input type='text' id='dark-sq-colorpicker' class="ui-widget colorpicker" />
-          </p>
-        </div>
+
         <p>
           <label for="piece-set-select" class="ui-widget ui-state-default"
             style="border:none; background: none;">Piece&nbsp;set:</label>
@@ -673,88 +666,128 @@
           </select>
         </p>
 
-        <!-- Ordinary options -->
-        <p>
-          <label for="stroke-spinner" class="ui-widget ui-state-default"
-            style="border:none; background: none;">Inner&nbsp;stroke:</label>
-          <input id="stroke-spinner" style="width: 3em" />
-        </p>
-        <p>
-          <label for="boundary-spinner" class="ui-widget ui-state-default"
-            style="border:none; background: none;">Boundary&nbsp;stroke:</label>
-          <input id="boundary-spinner" style="width: 3em" />
-        </p>
-        <p style="display: flex; align-items: center">
-          <label for="black-1-colorpicker" class="ui-widget ui-state-default"
-            style="border:none; background: none;">Black&nbsp;grad-1:&nbsp;</label>
-          <input type='text' id='black-1-colorpicker' class="ui-widget colorpicker" />
-        </p>
-        <p style="display: flex; align-items: center">
-          <label for="black-2-colorpicker" class="ui-widget ui-state-default"
-            style="border:none; background: none;">Black&nbsp;grad-2:&nbsp;</label>
-          <input type='text' id='black-2-colorpicker' class="ui-widget colorpicker" />
-        </p>
-        <p style="display: flex; align-items: center">
-          <label for="black-s-colorpicker" class="ui-widget ui-state-default"
-            style="border:none; background: none;">Black&nbsp;stroke:&nbsp;</label>
-          <input type='text' id='black-s-colorpicker' class="ui-widget colorpicker" />
-        </p>
-        <p style="display: flex; align-items: center">
-          <label for="white-1-colorpicker" class="ui-widget ui-state-default"
-            style="border:none; background: none;">White&nbsp;grad-1:&nbsp;</label>
-          <input type='text' id='white-1-colorpicker' class="ui-widget colorpicker" />
-        </p>
-        <p style="display: flex; align-items: center">
-          <label for="white-2-colorpicker" class="ui-widget ui-state-default"
-            style="border:none; background: none;">White&nbsp;grad-2:&nbsp;</label>
-          <input type='text' id='white-2-colorpicker' class="ui-widget colorpicker" />
-        </p>
-        <p style="display: flex; align-items: center">
-          <label for="white-s-colorpicker" class="ui-widget ui-state-default"
-            style="border:none; background: none;">White&nbsp;stroke:&nbsp;</label>
-          <input type='text' id='white-s-colorpicker' class="ui-widget colorpicker" />
-        </p>
+        <div id="accordion">
+          <h3>Colors</h3>
+          <div>
+            <p style="display: flex; align-items: center">
+              <label for="black-1-colorpicker" class="ui-widget ui-state-default"
+                style="border:none; background: none;">Black&nbsp;grad-1:&nbsp;</label>
+              <input type='text' id='black-1-colorpicker' class="ui-widget colorpicker" />
+            </p>
+            <p style="display: flex; align-items: center">
+              <label for="black-2-colorpicker" class="ui-widget ui-state-default"
+                style="border:none; background: none;">Black&nbsp;grad-2:&nbsp;</label>
+              <input type='text' id='black-2-colorpicker' class="ui-widget colorpicker" />
+            </p>
+            <p style="display: flex; align-items: center">
+              <label for="black-s-colorpicker" class="ui-widget ui-state-default"
+                style="border:none; background: none;">Black&nbsp;stroke:&nbsp;</label>
+              <input type='text' id='black-s-colorpicker' class="ui-widget colorpicker" />
+            </p>
+            <p style="display: flex; align-items: center">
+              <label for="white-1-colorpicker" class="ui-widget ui-state-default"
+                style="border:none; background: none;">White&nbsp;grad-1:&nbsp;</label>
+              <input type='text' id='white-1-colorpicker' class="ui-widget colorpicker" />
+            </p>
+            <p style="display: flex; align-items: center">
+              <label for="white-2-colorpicker" class="ui-widget ui-state-default"
+                style="border:none; background: none;">White&nbsp;grad-2:&nbsp;</label>
+              <input type='text' id='white-2-colorpicker' class="ui-widget colorpicker" />
+            </p>
+            <p style="display: flex; align-items: center">
+              <label for="white-s-colorpicker" class="ui-widget ui-state-default"
+                style="border:none; background: none;">White&nbsp;stroke:&nbsp;</label>
+              <input type='text' id='white-s-colorpicker' class="ui-widget colorpicker" />
+            </p>
+          </div>
 
-        <!-- Shadow options -->
-        <p style="margin-bottom: 0px">
-          <label for="shadow-select" class="ui-widget ui-state-default"
-            style="border:none; background: none;">Shadow:</label>
-          <select id="shadow-select">
-            <option value="none">None</option>
-            <option value="blurred">Blurred</option>
-          </select>
-        </p>
-        <div style="padding-left: 2em" id="shadow-options">
-          <p style="display: flex; align-items: center">
-            <label for="black-shadow-colorpicker" class="ui-widget ui-state-default"
-              style="border:none; background: none;">Black&nbsp;shadow:&nbsp;</label>
-            <input type='text' id='black-shadow-colorpicker' class="ui-widget colorpicker" />
-          </p>
-          <p style="display: flex; align-items: center">
-            <label for="white-shadow-colorpicker" class="ui-widget ui-state-default"
-              style="border:none; background: none;">White&nbsp;shadow:&nbsp;</label>
-            <input type='text' id='white-shadow-colorpicker' class="ui-widget colorpicker" />
-          </p>
-          <p style="display: flex; align-items: center">
-            <label for="shadow-slant-slider" class="ui-widget ui-state-default"
-              style="border:none; background: none;">Slant&nbsp;slope:&nbsp;</label>
-            <span id="shadow-slant-slider"></span>
-          </p>
-          <p style="display: flex; align-items: center">
-            <label for="shadow-flatten-slider" class="ui-widget ui-state-default"
-              style="border:none; background: none;">Flatten:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <span id="shadow-flatten-slider"></span>
-          </p>
-          <p style="display: flex; align-items: center">
-            <label for="shadow-blur-slider" class="ui-widget ui-state-default"
-              style="border:none; background: none;">Blur&nbsp;radius:&nbsp;&nbsp;</label>
-            <span id="shadow-blur-slider"></span>
-          </p>
-          <p style="display: flex; align-items: center">
-            <label for="shadow-diag-slider" class="ui-widget ui-state-default"
-              style="border:none; background: none;">Diag&nbsp;offset:&nbsp;&nbsp;&nbsp;</label>
-            <span id="shadow-diag-slider"></span>
-          </p>
+          <h3>Stroke</h3>
+          <div>
+            <p>
+              <label for="stroke-spinner" class="ui-widget ui-state-default"
+                style="border:none; background: none;">Inner&nbsp;stroke:</label>
+              <input id="stroke-spinner" style="width: 3em" />
+            </p>
+            <p>
+              <label for="boundary-spinner" class="ui-widget ui-state-default"
+                style="border:none; background: none;">Boundary&nbsp;stroke:</label>
+              <input id="boundary-spinner" style="width: 3em" />
+            </p>
+          </div>
+
+          <h3>Shadow</h3>
+          <div>
+            <p style="margin-bottom: 0px">
+              <label for="shadow-select" class="ui-widget ui-state-default"
+                style="border:none; background: none;">Shadow:</label>
+              <select id="shadow-select">
+                <option value="none">None</option>
+                <option value="blurred">Blurred</option>
+              </select>
+            </p>
+            <div style="padding-left: 1em" id="shadow-options">
+              <p style="display: flex; align-items: center">
+                <label for="black-shadow-colorpicker" class="ui-widget ui-state-default"
+                  style="border:none; background: none;">Black&nbsp;shadow:&nbsp;</label>
+                <input type='text' id='black-shadow-colorpicker' class="ui-widget colorpicker" />
+              </p>
+              <p style="display: flex; align-items: center">
+                <label for="white-shadow-colorpicker" class="ui-widget ui-state-default"
+                  style="border:none; background: none;">White&nbsp;shadow:&nbsp;</label>
+                <input type='text' id='white-shadow-colorpicker' class="ui-widget colorpicker" />
+              </p>
+              <p style="display: flex; align-items: center">
+                <label for="shadow-slant-slider" class="ui-widget ui-state-default"
+                  style="border:none; background: none;">Slant&nbsp;slope:&nbsp;</label>
+                <span id="shadow-slant-slider"></span>
+              </p>
+              <p style="display: flex; align-items: center">
+                <label for="shadow-flatten-slider" class="ui-widget ui-state-default"
+                  style="border:none; background: none;">Flatten:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <span id="shadow-flatten-slider"></span>
+              </p>
+              <p style="display: flex; align-items: center">
+                <label for="shadow-blur-slider" class="ui-widget ui-state-default"
+                  style="border:none; background: none;">Blur&nbsp;radius:&nbsp;&nbsp;</label>
+                <span id="shadow-blur-slider"></span>
+              </p>
+              <p style="display: flex; align-items: center">
+                <label for="shadow-diag-slider" class="ui-widget ui-state-default"
+                  style="border:none; background: none;">Diag&nbsp;offset:&nbsp;&nbsp;&nbsp;</label>
+                <span id="shadow-diag-slider"></span>
+              </p>
+            </div>
+          </div>
+
+          <h3>Board</h3>
+          <div>
+            <p style="margin-bottom: 0px">
+              <label for="board-style-select" class="ui-widget ui-state-default"
+                style="border:none; background: none;">Squares&nbsp;style:</label>
+              <select id="board-style-select">
+                <option value="lichess">Lichess</option>
+                <option value="chesscom">chess.com</option>
+                <option value="chesstempo">Chess Tempo</option>
+                <option value="banksia">Banksia</option>
+                <option value="nibbler">Nibbler</option>
+                <option value="arena">Arena</option>
+                <option value="chessbase">ChessBase</option>
+                <option value="custom">Custom...</option>
+              </select>
+            </p>
+            <div style="padding-left: 1em" id="custom-sq-colorpickers">
+              <p style="display: flex; align-items: center">
+                <label for="light-sq-colorpicker" class="ui-widget ui-state-default"
+                  style="border:none; background: none;">Light&nbsp;squares:&nbsp;</label>
+                <input type='text' id='light-sq-colorpicker' class="ui-widget colorpicker" />
+              </p>
+              <p style="display: flex; align-items: center">
+                <label for="dark-sq-colorpicker" class="ui-widget ui-state-default"
+                  style="border:none; background: none;">Dark&nbsp;squares:&nbsp;</label>
+                <input type='text' id='dark-sq-colorpicker' class="ui-widget colorpicker" />
+              </p>
+            </div>
+          </div>
         </div>
 
         <p>
