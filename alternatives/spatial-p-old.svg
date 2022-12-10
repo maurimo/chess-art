@@ -12,7 +12,7 @@
    inkscape:export-filename="/home/maurizio/out/wp.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
-   sodipodi:docname="p_alt1.svg"
+   sodipodi:docname="p.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -77,30 +77,20 @@
     <linearGradient
        inkscape:collect="always"
        xlink:href="#fillGradient"
-       id="body-gradient"
-       x1="316.10413"
-       y1="819.3819"
-       x2="671.39105"
-       y2="929.90265"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.90255878,0,0,0.90255878,49.530922,-107.3528)" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#fillGradient"
        id="main-gradient"
+       x1="250.33334"
+       y1="541.66669"
+       x2="671.33337"
+       y2="718.33331"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.77343669,0,0,0.77343669,108.28151,-19.306276)"
-       x1="289.32327"
-       y1="510.8291"
-       x2="632.55389"
-       y2="666.31305" />
+       gradientTransform="translate(22.66667,9.666667)" />
     <filter
        style="color-interpolation-filters:sRGB;"
        id="filterBlur"
-       x="-0.33586088"
-       y="-0.21745132"
-       width="1.6717218"
-       height="1.4349026">
+       x="-0.19086554"
+       y="-0.16337513"
+       width="1.3817311"
+       height="1.3267503">
       <feGaussianBlur
          stdDeviation="50 50"
          result="blur"
@@ -114,20 +104,20 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2"
-     inkscape:cx="450.00002"
-     inkscape:cy="664.58336"
+     inkscape:zoom="0.21213203"
+     inkscape:cx="-596.32673"
+     inkscape:cy="452.54835"
      inkscape:current-layer="pawn"
      inkscape:document-units="px"
-     inkscape:window-width="1535"
-     inkscape:window-height="969"
-     inkscape:window-x="26"
-     inkscape:window-y="23"
+     inkscape:window-width="1846"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:showpageshadow="2"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:window-maximized="0" />
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata36225">
     <rdf:RDF>
@@ -166,28 +156,28 @@
       </cc:License>
     </rdf:RDF>
   </metadata>
-  <path
-     id="shadow"
-     style="fill:#000000"
+  <ellipse
      class="base shadow"
-     d="M 460.19531 305.53711 C 382.59526 305.53739 319.6875 369.59916 319.6875 448.62305 C 319.86695 487.95811 335.94058 525.48323 364.12891 552.37695 C 356.45483 463.51554 573.33866 472.48187 552.69531 556.00977 C 583.12108 528.91248 600.61279 489.78452 600.70312 448.62305 C 600.70312 369.59856 537.79594 305.53655 460.19531 305.53711 z M 507.57812 552.96875 L 406.03906 553.62891 C 380.64671 759.57263 265.24701 765.63524 278.46875 857.16211 L 633.9707 857.38477 C 645.11198 756.53324 526.65892 757.47709 507.57812 552.96875 z "
-     sodipodi:nodetypes="ccccccccccc" />
-  <path
-     id="boundary"
-     style="fill:none"
+     style="fill:#000"
+     id="shadow"
+     cx="477.66666"
+     cy="614.66669"
+     rx="181.66667"
+     ry="185" />
+  <ellipse
      class="base stroke-color stroke-boundary"
-     d="M 460.19531 305.53711 C 382.59526 305.53739 319.6875 369.59916 319.6875 448.62305 C 319.86695 487.95811 335.94058 525.48323 364.12891 552.37695 C 356.45483 463.51554 573.33866 472.48187 552.69531 556.00977 C 583.12108 528.91248 600.61279 489.78452 600.70312 448.62305 C 600.70312 369.59856 537.79594 305.53655 460.19531 305.53711 z M 507.57812 552.96875 L 406.03906 553.62891 C 380.64671 759.57263 265.24701 765.63524 278.46875 857.16211 L 633.9707 857.38477 C 645.11198 756.53324 526.65892 757.47709 507.57812 552.96875 z "
-     sodipodi:nodetypes="ccccccccccc" />
-  <path
-     id="main"
-     style="fill:url(#main-gradient)"
+     style="fill:none"
+     id="boundary"
+     cx="477.66666"
+     cy="614.66669"
+     rx="181.66667"
+     ry="185" />
+  <ellipse
      class="base stroke-color stroke-medium"
-     d="m 460.19471,305.53759 c -77.60005,2.8e-4 -140.50717,64.06189 -140.50717,143.08578 0.17945,39.33506 16.25255,76.8601 44.44088,103.75382 -7.67408,-88.86141 209.20934,-79.89481 188.56599,3.63309 30.42577,-27.09729 47.91862,-66.22544 48.00896,-107.38691 0,-79.02449 -62.90803,-143.08634 -140.50866,-143.08578 z"
-     sodipodi:nodetypes="cccccc" />
-  <path
-     style="fill:url(#body-gradient)"
-     d="M 278.46955,857.16293 C 265.24781,765.63606 380.64766,759.5718 406.04001,553.62808 l 101.53742,-0.65856 c 19.0808,204.50834 137.53505,203.56416 126.39377,304.41569 z"
-     id="body"
-     sodipodi:nodetypes="ccccc"
-     class="base stroke-color stroke-medium" />
+     style="fill:url(#main-gradient)"
+     id="main"
+     cx="477.66666"
+     cy="614.66669"
+     rx="181.66667"
+     ry="185" />
 </svg>
