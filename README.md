@@ -6,6 +6,23 @@ You can test youself on the [configuration page](https://maurimo.github.io/chess
 You can customize gradient colors, stroke color/widths, shadow on/off + blur size + offset etc.
 The square colors in the configuration page are not part of the piece theme but just for testing, so you can test how the customized SVGs look like on your board colors.
 
+Can see a few configuration examples below in the "Examples" section
+
+# Themes
+
+I'm providing three "serious" themes:
+* Fantasy
+* Celtic
+* Spatial
+with some alternative pieces in the "alternatives" subfolder. The SVGs are not to be uses as is bot to be configured in the config page, the bright colors are just to highlight the gradient.
+
+Additionally I have some fancy themes in the "fancy" subfolder:
+* Skulls
+* Eyes
+* Prmi (cats)
+* Freak
+Those are not configurable and just made available as is.
+
 # Licensing
 
 I am licensing these artworks with the MIT license.
