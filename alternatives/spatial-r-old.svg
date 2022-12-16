@@ -4,15 +4,15 @@
 <svg
    width="700pt"
    height="700pt"
-   id="pawn"
    viewBox="0 0 933.333 933.333"
+   id="bishop"
    sodipodi:version="0.32"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    version="1.0"
-   inkscape:export-filename="/home/maurizio/out/wp.png"
+   inkscape:export-filename="/home/maurizio/out/wr.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
-   sodipodi:docname="p_alt2.svg"
+   sodipodi:docname="spatial-r-old.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -77,30 +77,64 @@
     <linearGradient
        inkscape:collect="always"
        xlink:href="#fillGradient"
-       id="main-gradient"
-       x1="250.33334"
-       y1="541.66669"
-       x2="671.33337"
-       y2="718.33331"
+       id="body-gradient"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.6480516,0,0,0.6480516,170.01607,7.692475)" />
+       x1="88.715729"
+       y1="286.24783"
+       x2="772.14215"
+       y2="750.5813" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#fillGradient"
-       id="body-gradient"
-       x1="185.76682"
-       y1="924.38446"
-       x2="796.07629"
-       y2="1042.4318"
+       id="top-left-gradient"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.6480516,0,0,0.6480516,170.01607,-2.307525)" />
+       x1="88.715729"
+       y1="286.24783"
+       x2="772.14215"
+       y2="750.5813" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#fillGradient"
+       id="top-mid-gradient"
+       gradientUnits="userSpaceOnUse"
+       x1="88.715729"
+       y1="286.24783"
+       x2="772.14215"
+       y2="750.5813" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#fillGradient"
+       id="top-right-gradient"
+       gradientUnits="userSpaceOnUse"
+       x1="88.715729"
+       y1="286.24783"
+       x2="772.14215"
+       y2="750.5813" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#fillGradient"
+       id="bottom-left-gradient"
+       gradientUnits="userSpaceOnUse"
+       x1="88.715729"
+       y1="286.24783"
+       x2="772.14215"
+       y2="750.5813" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#fillGradient"
+       id="bottom-right-gradient"
+       gradientUnits="userSpaceOnUse"
+       x1="88.715729"
+       y1="286.24783"
+       x2="772.14215"
+       y2="750.5813" />
     <filter
        style="color-interpolation-filters:sRGB;"
        id="filterBlur"
-       x="-0.32031364"
-       y="-0.22511679"
-       width="1.6406273"
-       height="1.4502336">
+       x="-0.192"
+       y="-0.17638396"
+       width="1.384"
+       height="1.3527679">
       <feGaussianBlur
          stdDeviation="50 50"
          result="blur"
@@ -114,18 +148,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2"
-     inkscape:cx="324.16667"
-     inkscape:cy="320.41667"
-     inkscape:current-layer="pawn"
+     inkscape:zoom="0.6"
+     inkscape:cx="493.33333"
+     inkscape:cy="414.16667"
+     inkscape:current-layer="bishop"
      inkscape:document-units="px"
      inkscape:window-width="1535"
      inkscape:window-height="969"
      inkscape:window-x="26"
      inkscape:window-y="23"
-     inkscape:showpageshadow="2"
      inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
      showgrid="false"
      inkscape:window-maximized="0" />
   <metadata
@@ -168,25 +200,60 @@
   </metadata>
   <path
      id="shadow"
-     style="fill:#000000"
+     style="fill:#000"
      class="base shadow"
-     d="m 464.87891,303.875 c -65.01947,4.8e-4 -117.72805,53.67619 -117.72852,119.88867 0.0387,29.7479 26.65925,58.39105 46.53906,80.4043 -91.17934,70.55501 -22.46333,77.66344 68.625,114.50976 91.68969,-45.03427 165.24837,-55.65894 74.14063,-114.70703 21.85273,-21.91227 46.08916,-50.41944 46.1543,-80.20703 C 582.60891,357.55041 529.89914,303.87439 464.87891,303.875 Z m -2.56446,314.80273 C 388.78469,654.79258 303.88713,713.0858 283.50586,836.68555 l 374.63281,0.24609 C 634.10527,703.43422 540.15134,650.16369 462.31445,618.67773 Z m 0.13086,-209.9707 c 46.97659,-2.2e-4 69.05872,38.78059 69.0586,86.61914 -0.002,1.77949 -0.0778,3.55562 -0.1875,5.33008 -7.03544,-4.40222 -14.64696,-8.97714 -23.49219,-13.93555 l -91.88086,1.08594 c -8.21703,5.72664 -15.31087,10.99251 -21.84766,16.03711 -0.36731,-2.82644 -0.61703,-5.66767 -0.70898,-8.51758 -1.2e-4,-47.83854 22.082,-86.61935 69.05859,-86.61914 z" />
+     d="M 623.33398 137 L 623.33398 308.66602 L 281.66602 308.66602 L 281.66602 175.33398 L 125 175.33398 L 125 337 L 236.66602 337 L 236.66602 749 L 163.33398 749 L 163.33398 815.66602 L 565 815.66602 L 565 788.66602 L 616.66602 788.66602 L 616.66602 817.33398 L 713.33398 817.33398 L 713.33398 687.33398 L 650 687.33398 L 650 380.33398 L 750 380.33398 L 750 137 L 623.33398 137 z M 363.33398 210.33398 L 363.33398 278.66602 L 508.33398 278.66602 L 508.33398 210.33398 L 363.33398 210.33398 z " />
   <path
+     id="boundary"
      style="fill:none"
      class="base stroke-color stroke-boundary"
-     d="m 464.87891,303.875 c -65.01947,4.8e-4 -117.72805,53.67619 -117.72852,119.88867 0.0387,29.7479 26.65925,58.39105 46.53906,80.4043 -0.46145,0.35707 -0.91881,0.71252 -1.37209,1.06636 -89.11114,69.56136 -20.63025,76.78356 69.99709,113.4434 90.40384,-44.40271 163.18163,-55.35417 77.87696,-112.2511 -1.21333,-0.80927 -2.45864,-1.62784 -3.73633,-2.45593 21.85273,-21.91227 46.08916,-50.41944 46.1543,-80.20703 C 582.60891,357.55041 529.89914,303.87439 464.87891,303.875 Z m -2.56446,314.80273 C 388.78469,654.79258 303.88713,713.0858 283.50586,836.68555 l 374.63281,0.24609 C 634.10527,703.43422 540.15134,650.16369 462.31445,618.67773 Z"
-     id="boundary"
-     sodipodi:nodetypes="cccscsccccccc" />
-  <path
-     id="main"
-     style="fill:url(#main-gradient)"
-     class="base stroke-color stroke-medium"
-     d="m 464.87891,303.875 c -65.01947,4.8e-4 -117.72805,53.67619 -117.72852,119.88867 0.039,29.99269 27.11592,58.88116 47.04492,80.96485 -0.43713,-3.11682 -0.70706,-6.2556 -0.80859,-9.40235 -1.2e-4,-47.83854 22.082,-86.61935 69.05859,-86.61914 46.97659,-2.2e-4 69.05872,38.78059 69.0586,86.61914 -0.006,4.97343 -0.4328,9.93708 -1.27539,14.83594 23.17117,-22.55502 52.30948,-53.75628 52.38086,-86.39844 C 582.60891,357.55041 529.89914,303.87439 464.87891,303.875 Z"
-     sodipodi:nodetypes="ccccccccc" />
-  <path
-     style="fill:url(#body-gradient)"
-     d="M 283.50679,836.68618 C 331.61417,544.94482 739.40994,616.54039 507.82503,486.71991 l -91.88152,1.08724 c -222.13869,154.81357 187.98752,48.01797 242.19556,349.12531 z"
+     d="M 623.33398 137 L 623.33398 308.66602 L 281.66602 308.66602 L 281.66602 175.33398 L 125 175.33398 L 125 337 L 236.66602 337 L 236.66602 749 L 163.33398 749 L 163.33398 815.66602 L 565 815.66602 L 565 788.66602 L 616.66602 788.66602 L 616.66602 817.33398 L 713.33398 817.33398 L 713.33398 687.33398 L 650 687.33398 L 650 380.33398 L 750 380.33398 L 750 137 L 623.33398 137 z M 363.33398 210.33398 L 363.33398 278.66602 L 508.33398 278.66602 L 508.33398 210.33398 L 363.33398 210.33398 z " />
+  <rect
+     y="308.66666"
+     x="236.66667"
+     height="479.99997"
+     width="413.3334"
      id="body"
-     sodipodi:nodetypes="ccccc"
+     style="fill:url(#body-gradient)"
+     class="base stroke-color stroke-medium" />
+  <rect
+     y="175.33333"
+     x="125"
+     height="161.66666"
+     width="156.66669"
+     id="top-left"
+     style="fill:url(#top-left-gradient)"
+     class="base stroke-color stroke-medium" />
+  <rect
+     y="210.33334"
+     x="363.33334"
+     height="68.333321"
+     width="144.99998"
+     id="top-mid"
+     style="fill:url(#top-mid-gradient)"
+     class="base stroke-color stroke-medium" />
+  <rect
+     y="137"
+     x="623.33337"
+     height="243.33334"
+     width="126.66663"
+     id="top-right"
+     style="fill:url(#top-right-gradient)"
+     class="base stroke-color stroke-medium" />
+  <rect
+     y="748.99994"
+     x="163.33334"
+     height="66.666664"
+     width="401.66666"
+     id="bottom-left"
+     style="fill:url(#bottom-left-gradient)"
+     class="base stroke-color stroke-medium" />
+  <rect
+     y="687.33331"
+     x="616.66669"
+     height="130"
+     width="96.666664"
+     id="bottom-right"
+     style="fill:url(#bottom-right-gradient)"
      class="base stroke-color stroke-medium" />
 </svg>
