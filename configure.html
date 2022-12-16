@@ -208,13 +208,13 @@
     };
 
     function get_all_variables() {
-      let query = window.location.search.substring(1);
+      let query = window.location.hash.substring(1);
       let vars = query.split("&");
       let retv = {}
       for (let i = 0; i < vars.length; i++) {
         let pair = vars[i].split("=", 2);
         if (pair.length == 2 && pair[0].length > 0) {
-          retv[pair[0]] = pair[1];
+          retv[pair[0]] = decodeURIComponent(pair[1]);
         }
       }
       return retv;
@@ -228,18 +228,18 @@
       }
       let first = true;
       for (let v in all_vars) {
-        path += (first ? '?' : '&') + v + "=" + all_vars[v];
+        path += (first ? '#' : '&') + v + "=" + encodeURIComponent(all_vars[v]);
         first = false;
       }
-      window.history.pushState("Chess Pieces", "", path);
+      window.history.replaceState(undefined, "", path);
     }
 
     function get_variable(variable, def) {
-      let query = window.location.search.substring(1);
+      let query = window.location.hash.substring(1);
       let vars = query.split("&");
       for (let i = 0; i < vars.length; i++) {
         let pair = vars[i].split("=");
-        if (pair[0] == variable) { return pair[1]; }
+        if (pair[0] == variable) { return decodeURIComponent(pair[1]); }
       }
       return def;
     }
