@@ -11,17 +11,21 @@ Can see a few configuration examples below in the "Examples" section
 # Themes
 
 I'm providing three "serious" themes:
-* Fantasy
-* Celtic
-* Spatial
-with some alternative pieces in the "alternatives" subfolder. The SVGs are not to be uses as is bot to be configured in the config page, the bright colors are just to highlight the gradient.
 
-Additionally I have some fancy themes in the "fancy" subfolder:
-* Skulls
-* Eyes
-* Prmi (cats)
-* Freak
-Those are not configurable and just made available as is.
+| <h3>Fantasy</h3> | <h3>Celtic</h3> |
+| :---: | :---: |
+| ![](https://raw.githubusercontent.com/maurimo/chess-art/main/demo/fantasy.png) | ![](https://raw.githubusercontent.com/maurimo/chess-art/main/demo/celtic.png)
+| <h3>Spatial</h3> |
+| ![](https://raw.githubusercontent.com/maurimo/chess-art/main/demo/spatial.png) |
+
+There are some alternative pieces in the "alternatives" subfolder. The SVGs are not to be uses as is but to be configured in the config page, the bright colors are just to highlight the gradient.
+
+Additionally I have some fancy themes in the "fancy" subfolder. These are not configurable and just made available as is:
+| <h3>Skulls</h3> | <h3>Eyes</h3> |
+| :---: | :---: |
+| ![](https://raw.githubusercontent.com/maurimo/chess-art/main/demo/skulls.png) | ![](https://raw.githubusercontent.com/maurimo/chess-art/main/demo/eyes.png) |
+| <h3>Prmi</h3> | <h3>Freak</h3> |
+| ![](https://raw.githubusercontent.com/maurimo/chess-art/main/demo/prmi.png) | ![](https://raw.githubusercontent.com/maurimo/chess-art/main/demo/freak.png) |
 
 # Licensing
 
